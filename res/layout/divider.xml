@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent"
+              android:id="@+id/divider" android:layout_height="wrap_content" android:background="@drawable/bwgradient">
+
+
+    <TextView android:id="@+id/dividertext" android:textColor="#FFFFFF"
+              android:layout_width="fill_parent" android:paddingLeft="5px" android:textStyle="bold"
+              android:layout_height="wrap_content" android:textSize="6pt" android:paddingTop="1pt"
+              android:paddingBottom="1pt"
+            />
+
+</LinearLayout>

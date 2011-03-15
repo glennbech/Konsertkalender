@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Konsertkalender</string>
+    <string name="johndee">John Dee</string>
+    <string name="sentrum">Sentrum Scene</string>
+    <string name="rockefeller">Rockefeller</string>
+    <string name="all">Alle</string>
+    <string name="favoritter">Mine Favoritter</string>
+    <string name="app_label">label</string>
+    <string name="search_hint">Søk...</string>
+    <string name="favorite">Legg til som favoritt</string>
+    <string name="share">Del denne konserten</string>
+    <string name="minefavoritter">Favoritter</string>
+    <string name="refresh">Hent program</string>
+
+    <string name="nyfavoritt">Ny favoritt</string>
+    <string name="tittel">Tittel</string>
+    <string name="date">Dato</string>
+    <string name="location">Spillested</string>
+    <string name="toexternal">Mer info</string>
+
+    <!-- search -->
+
+    <string name="searchresult">Søkeresultat</string>
+
+
+    <string name="addfavorite">Legg til som favoritt</string>
+    <string name="addreminder">Påminnelse (kommer..)</string>
+    <string name="arrangement">Arrangement</string>
+
+    <string-array name="deliverhour">
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+    </string-array>
+
+    <string-array name="timeinadvance">
+
+        <item>1 Dag</item>
+        <item>1 Uke</item>
+        <item>4 Uker</item>
+
+    </string-array>
+
+
+</resources>

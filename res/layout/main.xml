@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:myapp="http://schemas.android.com/apk/res/com.glennbech.events"
+              android:orientation="vertical"
+              android:layout_width="fill_parent" android:layout_weight="1"
+              android:layout_height="fill_parent" android:background="#FFFFFF">
+
+    <LinearLayout android:id="@+id/topmenu" android:layout_height="wrap_content" android:layout_width="fill_parent"
+                  android:gravity="left" android:layout_marginTop="5px">
+
+
+        <ImageButton android:id="@+id/gotofavoritebutton" android:src="@drawable/buttonfavorite"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+
+        <EditText android:id="@+id/search" android:layout_height="fill_parent" android:layout_width="fill_parent"
+                  android:layout_weight="1"/>
+
+        <ImageButton android:id="@+id/searchbutton" android:src="@drawable/searchicon"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+    </LinearLayout>
+
+    <View android:layout_height="2px" android:layout_width="fill_parent" android:padding="1px"
+          android:background="#DDDDDD"/>
+
+    <com.admob.android.ads.AdView
+            android:id="@+id/ad"   android:padding="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            myapp:backgroundColor="#000000"
+            myapp:primaryTextColor="#FFFFFF"
+            myapp:secondaryTextColor="#CCCCCC"/>
+
+    <View android:layout_height="2px" android:layout_width="fill_parent" android:padding="1px"
+          android:background="#DDDDDD"/>
+
+    <ListView android:id="@+id/messageList"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:layout_weight="1.0" android:cacheColorHint="#00000000"/>
+
+
+</LinearLayout>
