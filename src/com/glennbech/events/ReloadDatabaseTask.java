@@ -59,10 +59,11 @@ public class ReloadDatabaseTask extends TimerTask {
                 HashSet set = new HashSet(latestList);
                 set.removeAll(oldList);
                 Log.d(TAG, "The new list has a diff of " + set.size() + " events.");
-                notify("Konsertprogram", "Konsertprogrammet er oppdatert.", new ArrayList(set));
+                notify(context.getString(R.string.notificationHeader), context.getString(R.string.notification), new ArrayList(set));
             }
 
         } catch (IOException e) {
+            notify(context.getString(R.string.notificationOnErrorHeader), context.getString(R.string.notificationOnError), null);
             Log.e("Feil under henting av konsertprogram, vi venter til neste gang", e.getMessage(), e);
         }
     }
@@ -71,14 +72,18 @@ public class ReloadDatabaseTask extends TimerTask {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent i = new Intent().setClass(context, FavoritesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.putExtra("events", (Serializable) newEvents);
         i.putExtra("caption", "nyheter");
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent;
+        if (newEvents != null) {
+            i.putExtra("events", (Serializable) newEvents);
+            pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_ONE_SHOT);
+        } else {
+            pendingIntent = null;
+        }
+
         Notification notification = new Notification(R.drawable.icon, title, System.currentTimeMillis());
         notification.setLatestEventInfo(context, title, message, pendingIntent);
         notificationManager.notify(MY_NOTIFICATION_ID, notification);
-
     }
-
 }
 

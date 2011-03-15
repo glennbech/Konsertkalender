@@ -32,7 +32,7 @@ public class EventListActivity extends Activity {
     private ProgressDialog progress;
     private SectionedAdapter adapter;
     private SQLiteEventStore store;
-    private MonitorEventListService service;
+    private EventService service;
     private static String TAG = EventListActivity.class.getName();
 
     /**
@@ -45,7 +45,7 @@ public class EventListActivity extends Activity {
         setContentView(R.layout.main);
 
         // register the service, and create it if it is not running.
-        bindService(new Intent(this, MonitorEventListService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, EventService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
 
         adapter = new EventSectionedAdapter(this);
 
@@ -109,7 +109,6 @@ public class EventListActivity extends Activity {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(ReloadDatabaseTask.MY_NOTIFICATION_ID);
-
     }
 
     @Override
@@ -159,7 +158,6 @@ public class EventListActivity extends Activity {
                 } catch (IOException e) {
                     handler.sendEmptyMessage(EVENT_ERROR);
                 }
-
             }
         };
 
@@ -275,7 +273,7 @@ public class EventListActivity extends Activity {
      */
     public ServiceConnection onServiceConntection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            service = ((MonitorEventListService.LocalBinder) iBinder).getService();
+            service = ((EventService.LocalBinder) iBinder).getService();
             Log.d(EventListActivity.class.getName(), "Service connected.");
         }
 

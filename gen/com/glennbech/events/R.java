@@ -137,6 +137,12 @@ containing a value of this type.
         public static final int johndee=0x7f070001;
         public static final int location=0x7f07000f;
         public static final int minefavoritter=0x7f07000a;
+        public static final int notification=0x7f070016;
+        /**  Notifications 
+         */
+        public static final int notificationHeader=0x7f070015;
+        public static final int notificationOnError=0x7f070018;
+        public static final int notificationOnErrorHeader=0x7f070017;
         public static final int nyfavoritt=0x7f07000c;
         public static final int refresh=0x7f07000b;
         public static final int rockefeller=0x7f070003;

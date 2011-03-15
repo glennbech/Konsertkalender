@@ -38,7 +38,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".MonitorEventListService"/>
+        <service android:name=".EventService"/>
 
 
     </application>

@@ -11,21 +11,23 @@ import java.util.Timer;
 import static com.glennbech.events.TimerConsts.SECOND;
 
 /**
- * @author Glenn Bech
+ * Service that schedules the Database Reload task.
  */
 
-public class MonitorEventListService extends Service {
+public class EventService extends Service {
 
+    protected static final int MINUTE = 60 * SECOND;
+    protected static final int HOUR = MINUTE * 60;
     private IBinder binder = new LocalBinder();
     private Timer timer;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(MonitorEventListService.class.getName(), "onCreate");
+        Log.d(EventService.class.getName(), "onCreate");
         timer = new Timer(true);
-        timer.schedule(new ReloadDatabaseTask(this), 60 * SECOND , 12 * 60 * SECOND * 60);
-        Log.d(MonitorEventListService.class.getName(), "Timer task scheduled");
+        timer.schedule(new ReloadDatabaseTask(this), 60 * MINUTE, 60 * MINUTE);
+        Log.d(EventService.class.getName(), "Timer task scheduled");
     }
 
     public void reloadDatabase() {
@@ -49,8 +51,8 @@ public class MonitorEventListService extends Service {
     }
 
     public class LocalBinder extends Binder {
-        MonitorEventListService getService() {
-            return (MonitorEventListService.this);
+        EventService getService() {
+            return (EventService.this);
         }
     }
 

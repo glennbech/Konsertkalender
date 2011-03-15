@@ -53,5 +53,13 @@
 
     </string-array>
 
+    <!-- Notifications -->
+
+    <string name="notificationHeader">Konsertprogram</string>
+    <string name="notification">Programmeter opdpatert. Velg for å se nyheter.</string>
+
+    <string name="notificationOnErrorHeader">Konsertprogram</string>
+    <string name="notificationOnError">Feil under henting av konsertprogram. Forsøker igjen om</string>
+
 
 </resources>
