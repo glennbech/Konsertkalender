@@ -62,9 +62,9 @@ public class EventListActivity extends Activity {
         ImageButton b = (ImageButton) findViewById(R.id.gotofavoritebutton);
         b.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent().setClass(EventListActivity.this, FavoritesActivity.class);
-                i.putExtra(FavoritesActivity.ESTRA_EVENTS, (Serializable) store.getFavorites());
-                i.putExtra(FavoritesActivity.EXTRA_CAPTION, getResources().getString(R.string.favoritter));
+                Intent i = new Intent().setClass(EventListActivity.this, GenericEventListActivity.class);
+                i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.getFavorites());
+                i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.favoritter));
                 startActivity(i);
             }
         });
@@ -74,9 +74,9 @@ public class EventListActivity extends Activity {
             public void onClick(View view) {
                 EditText et = (EditText) findViewById(R.id.search);
                 String query = et.getText().toString();
-                Intent i = new Intent().setClass(EventListActivity.this, FavoritesActivity.class);
-                i.putExtra(FavoritesActivity.ESTRA_EVENTS, (Serializable) store.search(query.trim()));
-                i.putExtra(FavoritesActivity.EXTRA_CAPTION, getResources().getString(R.string.searchresult));
+                Intent i = new Intent().setClass(EventListActivity.this, GenericEventListActivity.class);
+                i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.search(query.trim()));
+                i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.searchresult));
                 startActivity(i);
             }
         });
@@ -221,7 +221,7 @@ public class EventListActivity extends Activity {
         }
 
         if (otherEvents.size() != 0) {
-            Log.d(EventListActivity.class.getName(), "Older" + FavoritesActivity.ESTRA_EVENTS + " List has values " + otherEvents.size());
+            Log.d(EventListActivity.class.getName(), "Older" + GenericEventListActivity.ESTRA_EVENTS + " List has values " + otherEvents.size());
             adapter.addSection(" ", new EventListAdapter(this, adapter, R.layout.itemrow, otherEvents));
         }
 

@@ -70,7 +70,7 @@ class ReloadDatabaseTask extends TimerTask {
     private void notify(String title, String message, List<VEvent> newEvents) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent i = new Intent().setClass(context, FavoritesActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent i = new Intent().setClass(context, GenericEventListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.putExtra("caption", "nyheter");
         PendingIntent pendingIntent;
         if (newEvents != null) {

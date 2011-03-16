@@ -15,9 +15,12 @@ import com.glennbech.events.persistence.SQLiteEventStore;
 import java.util.List;
 
 /**
+ * Reusable activity that will pick up a title and a list og events from the intent.
+ * Used by favorites and search.
+ *
  * @author Glenn Bech
  */
-public class FavoritesActivity extends Activity {
+public class GenericEventListActivity extends Activity {
 
     static final String ESTRA_EVENTS = "events";
     static final String EXTRA_CAPTION = "caption";
