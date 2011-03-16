@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Glenn Bech
  */
-public class URLBasedEventList implements EventList {
+ class URLBasedEventList implements EventList {
     private static final String FEED_URL = "http://www.rockefeller.no/kalender.ics";
    // private static final String FEED_URL = "http://bechonjava.squarespace.com/storage/android/kalender.ics";
 
@@ -22,7 +22,6 @@ public class URLBasedEventList implements EventList {
         final CalendarParser cp = new CalendarParser();
         final URLConnection urlConnection = feedUrl.openConnection();
         final InputStream inputStream = urlConnection.getInputStream();
-        final List<VEvent> latestList = cp.parse(inputStream);
-        return latestList;
+        return cp.parse(inputStream);
     }
 }

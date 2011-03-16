@@ -109,9 +109,8 @@ public class VEvent implements Serializable {
 
         VEvent vEvent = (VEvent) o;
 
-        if (uid != null ? !uid.equals(vEvent.uid) : vEvent.uid != null) return false;
+        return !(uid != null ? !uid.equals(vEvent.uid) : vEvent.uid != null);
 
-        return true;
     }
 
     @Override

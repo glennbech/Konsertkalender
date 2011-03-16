@@ -34,7 +34,7 @@ abstract public class SectionedAdapter extends BaseAdapter {
         sections = new ArrayList<Section>();
     }
 
-    public SectionedAdapter() {
+    SectionedAdapter() {
         super();
     }
 
@@ -141,8 +141,8 @@ abstract public class SectionedAdapter extends BaseAdapter {
     }
 
     class Section {
-        String caption;
-        BaseAdapter adapter;
+        final String caption;
+        final BaseAdapter adapter;
 
         Section(String caption, BaseAdapter adapter) {
             this.caption = caption;

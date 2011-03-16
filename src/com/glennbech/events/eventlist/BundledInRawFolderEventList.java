@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * @author Glenn Bech
  */
-public class FilebasedEventList implements EventList {
+class BundledInRawFolderEventList implements EventList {
 
-    private Context context;
+    private final Context context;
 
-    public FilebasedEventList(Context context) {
+    public BundledInRawFolderEventList(Context context) {
         this.context = context;
     }
 
@@ -25,8 +25,7 @@ public class FilebasedEventList implements EventList {
 
         final CalendarParser cp = new CalendarParser();
         final InputStream inputStream = context.getResources().openRawResource(R.raw.kalender);
-        final List<VEvent> latestList = cp.parse(inputStream);
-        return latestList;
+        return cp.parse(inputStream);
 
 
     }

@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.*;
 import android.widget.*;
 import com.glennbech.events.eventlist.EventList;
-import com.glennbech.events.eventlist.URLBasedEventList;
+import com.glennbech.events.eventlist.EventListFactory;
 import com.glennbech.events.parser.VEvent;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
@@ -29,11 +29,11 @@ public class EventListActivity extends Activity {
     private static final int EVENT_OK = 1;
     private static final int EVENT_ERROR = 99;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("E dd.MM.yyyy hh:mm");
+    private static final int DIALOG_VENUE = 2;
     private ProgressDialog progress;
     private SectionedAdapter adapter;
     private SQLiteEventStore store;
-    private EventService service;
-    private static String TAG = EventListActivity.class.getName();
+    private static final String TAG = EventListActivity.class.getName();
 
     /**
      * Called when the activity is first created.
@@ -81,6 +81,17 @@ public class EventListActivity extends Activity {
             }
         });
 
+        ImageButton venueFilterButton = (ImageButton) findViewById(R.id.filterbutton);
+        venueFilterButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                Dialog newDialog = new VenuePickerDialog(EventListActivity.this);
+                newDialog.setTitle("Spillesteder");
+                newDialog.setCancelable(true);
+                newDialog.show();
+
+            }
+        });
+
         ListView listview = (ListView) findViewById(R.id.messageList);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -118,6 +129,11 @@ public class EventListActivity extends Activity {
     }
 
     protected Dialog onCreateDialog(int id) {
+
+        if (id == DIALOG_VENUE) {
+            return new VenuePickerDialog(this);
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Kan ikke hente program. Nettverksfeil?")
                 .setCancelable(false)
@@ -146,8 +162,8 @@ public class EventListActivity extends Activity {
         progress = ProgressDialog.show(this, "Vennligst vent", "Laster program", true);
         Runnable r = new Runnable() {
             public void run() {
-                EventList el = new URLBasedEventList();
-                List<VEvent> allEvents = null;
+                EventList el = EventListFactory.getEventList(EventListActivity.this);
+                List<VEvent> allEvents;
                 try {
                     store.clear();
                     allEvents = el.getEvents();
@@ -165,7 +181,7 @@ public class EventListActivity extends Activity {
         t.start();
     }
 
-    Handler handler = new Handler() {
+    private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -175,7 +191,6 @@ public class EventListActivity extends Activity {
             if (msg.what == EVENT_OK) {
                 Log.d(TAG, "OK Event, dismissing progress & redraw");
                 // Not sure about this.... get it again?
-                SQLiteEventStore store = new SQLiteEventStore(EventListActivity.this);
                 redrawList(store.getEvents());
             } else if (msg.what == EVENT_ERROR) {
                 Log.d(TAG, "ERROR event, dismissing progrss & redraw");
@@ -187,13 +202,10 @@ public class EventListActivity extends Activity {
     private void redrawList(List<VEvent> events) {
         adapter.clear();
 
-        List<VEvent> newEvents = new ArrayList<VEvent>();
         List<VEvent> upComingEvents = new ArrayList<VEvent>();
         List<VEvent> otherEvents = new ArrayList<VEvent>();
-        SQLiteEventStore store = new SQLiteEventStore(this);
 
         final Date aWeekAhed = new Date(System.currentTimeMillis() + DAY * 7);
-        newEvents = store.getNewItems();
 
         for (VEvent e : events) {
             if (e.getStartDate() != null && e.getStartDate().before(aWeekAhed)) {
@@ -201,12 +213,6 @@ public class EventListActivity extends Activity {
             } else {
                 otherEvents.add(e);
             }
-        }
-
-        if (newEvents.size() != 0) {
-            Log.d(EventListActivity.class.getName(), "New" + FavoritesActivity.ESTRA_EVENTS + " Since last update has values " + newEvents);
-            EventListAdapter newItemsAdapter = new EventListAdapter(this, adapter, R.layout.itemrow, newEvents);
-            adapter.addSection("Nyheter", newItemsAdapter);
         }
 
         if (upComingEvents.size() != 0) {
@@ -243,13 +249,13 @@ public class EventListActivity extends Activity {
         return true;
     }
 
-    public void share(VEvent event) {
+    void share(VEvent event) {
         Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         StringBuffer sb = new StringBuffer();
         sb.append(event.getSummary());
-        sb.append("(" + dateFormat.format(event.getStartDate()) + ")");
-        sb.append("- " + event.getUrl());
+        sb.append("(").append(dateFormat.format(event.getStartDate())).append(")");
+        sb.append("- ").append(event.getUrl());
         sb.append("- " + "Send via \"KonsertKalender for Android\"");
 
         shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, sb.toString());
@@ -257,23 +263,21 @@ public class EventListActivity extends Activity {
     }
 
 
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
             Toast.makeText(EventListActivity.this, "Programmet oppdatert", Toast.LENGTH_LONG).show();
-
-
+            redrawList(store.getEvents());
         }
     };
 
     /**
      * Callback for the service.
      */
-    public ServiceConnection onServiceConntection = new ServiceConnection() {
+    public final ServiceConnection onServiceConntection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            service = ((EventService.LocalBinder) iBinder).getService();
+            EventService service= ((EventService.LocalBinder) iBinder).getService();
             Log.d(EventListActivity.class.getName(), "Service connected.");
         }
 

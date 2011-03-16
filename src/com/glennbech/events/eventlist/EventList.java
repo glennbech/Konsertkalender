@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface EventList {
 
-    public List<VEvent> getEvents() throws IOException;
+    List<VEvent> getEvents() throws IOException;
 
 }

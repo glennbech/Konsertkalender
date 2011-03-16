@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SQLiteEventStore extends SQLiteOpenHelper {
 
-    private static String ddlCreateMessage = "CREATE TABLE IF NOT EXISTS EVENT (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+    private static final String ddlCreateMessage = "CREATE TABLE IF NOT EXISTS EVENT (id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "uid TEXT," +
             "location TEXT," +
             "summary TEXT," +
@@ -28,13 +28,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
             "enddate INTEGER);";
 
 
-    private static String ddlCreateMessageFavorites = "CREATE TABLE IF NOT EXISTS EVENT_FAVORITE (UID PRIMARY KEY, eventdate INTEGER);";
-
-    private static String ddlCreateMessageReminders = "CREATE TABLE IF NOT EXISTS EVENT_REMINDER (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "date INTEGER," +
-            "uid TEXT," +
-            "hourtodeliver integer," +
-            "daysinadvance integer);";
+    private static final String ddlCreateMessageFavorites = "CREATE TABLE IF NOT EXISTS EVENT_FAVORITE (UID PRIMARY KEY, eventdate INTEGER);";
 
     private static final String DATABASE_NAME = "eventually";
     private static final String COLUMN_UID = "uid";
@@ -45,7 +39,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
     private static final String COLUMN_ISNEW = "isnew";
     private static final String COLUMN_URL = "url";
 
-    private static String TAG = SQLiteEventStore.class.getName();
+    private static final String TAG = SQLiteEventStore.class.getName();
 
     public SQLiteEventStore(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -60,15 +54,6 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-    }
-
-    public void deleteMessage(long id) {
-        ContentValues values = new ContentValues();
-        values.put("id", id);
-
-        SQLiteDatabase db = getWritableDatabase();
-        db.delete("EVENT", "id = ?", new String[]{String.valueOf(id)});
-        db.close();
     }
 
     public void clear() {
@@ -127,17 +112,6 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         return messageList;
     }
 
-    private List<String> getFavoritesFromCursor(Cursor result) {
-        List<String> favorites = new ArrayList<String>();
-        result.moveToFirst();
-        while (!result.isAfterLast()) {
-            String uid = result.getString(0);
-            favorites.add(uid);
-            result.moveToNext();
-        }
-        return favorites;
-    }
-
     public void setFavorite(String uid, Date startdate, boolean isFavorite) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -149,50 +123,6 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         } else {
             db.delete("EVENT_FAVORITE", "uid = :0", new String[]{uid});
         }
-        db.close();
-    }
-
-    /**
-     * private static String ddlCreateMessageReminders = "CREATE TABLE IF NOT EXISTS EVENT_REMINDER (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-     * "date INTEGER," +
-     * "uid TEXT," +
-     * "hourtodeliver integer," +
-     * "daysinadvance integer);";
-     */
-    public List<Reminder> getReminders() {
-        String query = "SELECT id, date, uid, hourtodeliver, daysinadvance FROM EVENT_REMINDER order by startdate asc ";
-        SQLiteDatabase writableDatabase = getWritableDatabase();
-        Cursor result = writableDatabase.rawQuery(query, null);
-        List<Reminder> messageList = getRemindersFromCursor(result);
-        writableDatabase.close();
-        return messageList;
-    }
-
-    private List<Reminder> getRemindersFromCursor(Cursor result) {
-
-        List<Reminder> reminders = new ArrayList<Reminder>();
-        result.moveToFirst();
-        while (!result.isAfterLast()) {
-            int id = result.getInt(0);
-            long date = result.getInt(1);
-            String uid = result.getString(2);
-            int hourtodeliver = result.getInt(3);
-            int daysinadvance = result.getInt(4);
-            Reminder r = new Reminder(uid, new Date(date), hourtodeliver, daysinadvance);
-            reminders.add(r);
-            result.moveToNext();
-        }
-        return reminders;
-    }
-
-    public void createReminder(Reminder r) {
-        ContentValues values = new ContentValues();
-        values.put("uid", r.getUid());
-        values.put("daysinadvance", r.getDaysInAdvance());
-        values.put("hourtodeliver", r.getHourToDeliver());
-        values.put("date", r.getEventDate().getTime());
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert("EVENT_REMINDER", null, values);
         db.close();
     }
 
@@ -236,25 +166,5 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         return messageList;
     }
 
-    public List<VEvent> getNewItems() {
-        String query = "SELECT id, uid, location, summary, url, startdate , enddate, isnew, isfavorite from EVENT where isnew = 1 order by startdate asc ";
-        SQLiteDatabase writableDatabase = getWritableDatabase();
-        Cursor result = writableDatabase.rawQuery(query, null);
-        List<VEvent> messageList = getMessagesFromCursor(result);
-        writableDatabase.close();
-        return messageList;
-    }
-
-    public void createEvents(List<VEvent> allEvents) {
-
-        for (VEvent e : allEvents) {
-            if (e.getStartDate().getTime() > System.currentTimeMillis()) {
-                continue;
-            }
-            createEvent(e);
-        }
-
-
-    }
 }
 

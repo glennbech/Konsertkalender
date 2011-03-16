@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class FavoritesActivity extends Activity {
 
-    protected static final String ESTRA_EVENTS = "events";
-    protected static final String EXTRA_CAPTION = "caption";
+    static final String ESTRA_EVENTS = "events";
+    static final String EXTRA_CAPTION = "caption";
     private SectionedAdapter adapter;
     private SQLiteEventStore store;
     private List<VEvent> favorites;

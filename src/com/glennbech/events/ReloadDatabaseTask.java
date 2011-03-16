@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import com.glennbech.events.eventlist.EventList;
-import com.glennbech.events.eventlist.URLBasedEventList;
+import com.glennbech.events.eventlist.EventListFactory;
 import com.glennbech.events.parser.VEvent;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
@@ -23,13 +23,12 @@ import java.util.TimerTask;
  *
  * @author Glenn Bech
  */
-public class ReloadDatabaseTask extends TimerTask {
+class ReloadDatabaseTask extends TimerTask {
 
-    private Context context;
-    private int count = 0;
+    private final Context context;
 
-    private static String TAG = ReloadDatabaseTask.class.getName();
-    public static String DATABASE_READY = "com.glennbech.events.DATABASE_READY";
+    private static final String TAG = ReloadDatabaseTask.class.getName();
+    public static final String DATABASE_READY = "com.glennbech.events.DATABASE_READY";
     public static final int MY_NOTIFICATION_ID = 666;
 
     public ReloadDatabaseTask(Context context) {
@@ -47,7 +46,7 @@ public class ReloadDatabaseTask extends TimerTask {
             Log.d(TAG, "Checking if this is the first time the application is run.");
             eventStore.clear();
 
-            EventList eventList = new URLBasedEventList();
+            EventList eventList = EventListFactory.getEventList(context);
             List<VEvent> latestList = eventList.getEvents();
 
             for (VEvent e : latestList) {
@@ -85,5 +84,6 @@ public class ReloadDatabaseTask extends TimerTask {
         notification.setLatestEventInfo(context, title, message, pendingIntent);
         notificationManager.notify(MY_NOTIFICATION_ID, notification);
     }
+
 }
 

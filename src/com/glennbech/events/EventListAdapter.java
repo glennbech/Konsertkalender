@@ -13,25 +13,13 @@ import com.glennbech.events.persistence.SQLiteEventStore;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class EventListAdapter extends ArrayAdapter<VEvent> {
+class EventListAdapter extends ArrayAdapter<VEvent> {
 
-    private static final String DARK = "#777777";
-    private static final String BRIGHT = "#FFFFFF";
-    private List<VEvent> items;
-    private Context context;
-    private BaseAdapter parentAdapter;
-    private boolean showFavorites = true;
+    private final List<VEvent> items;
+    private final Context context;
+    private final BaseAdapter parentAdapter;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("E dd.MM.yyyy");
-
-
-    public EventListAdapter(Context context, BaseAdapter parentAdapter, int textViewResourceId, List<VEvent> items, boolean showFavorites) {
-        super(context, textViewResourceId, items);
-        this.items = items;
-        this.context = context;
-        this.parentAdapter = parentAdapter;
-        this.showFavorites = showFavorites;
-    }
 
     public EventListAdapter(Context context, BaseAdapter parentAdapter, int textViewResourceId, List<VEvent> items) {
         super(context, textViewResourceId, items);
@@ -71,11 +59,9 @@ public class EventListAdapter extends ArrayAdapter<VEvent> {
                     if (event.isFavorite()) {
                         s.setFavorite(event.getUid(), event.getStartDate(), false);
                         event.setFavorite(false);
-
                     } else {
-                        s.setFavorite(event.getUid(), event.getStartDate(),  true);
+                        s.setFavorite(event.getUid(), event.getStartDate(), true);
                         event.setFavorite(true);
-
                     }
                     parentAdapter.notifyDataSetChanged();
                 }

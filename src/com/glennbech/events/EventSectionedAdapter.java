@@ -11,14 +11,14 @@ import android.widget.TextView;
  */
 public class EventSectionedAdapter extends SectionedAdapter {
 
-    private Context context;
+    private final Context context;
 
     public EventSectionedAdapter(Context context) {
         this.context = context;
     }
 
     protected View getHeaderView(String caption, int index, View convertView, ViewGroup parent) {
-        View view = (View) convertView;
+        View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.divider, null);

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:id="@+id/venuerow"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingBottom="6px" android:paddingTop="6px"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content" android:background="@drawable/softwhitegradient"
+        android:layout_width="wrap_content">
+
+    <TextView
+            android:id="@+id/venuename" android:layout_weight="1"
+            android:layout_width="fill_parent" android:textColor="#222222"
+            android:layout_height="wrap_content"/>
+
+    <CheckBox android:id="@+id/venueselected" android:gravity="right"
+              android:focusable="false"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -13,6 +13,10 @@
                      android:layout_height="wrap_content"
                      android:layout_width="wrap_content"/>
 
+        <ImageButton android:id="@+id/filterbutton" android:src="@drawable/list"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+
         <EditText android:id="@+id/search" android:layout_height="fill_parent" android:layout_width="fill_parent"
                   android:layout_weight="1"/>
 
@@ -25,7 +29,7 @@
           android:background="#DDDDDD"/>
 
     <com.admob.android.ads.AdView
-            android:id="@+id/ad"   android:padding="1px"
+            android:id="@+id/ad" android:padding="1px"
             android:layout_alignParentBottom="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

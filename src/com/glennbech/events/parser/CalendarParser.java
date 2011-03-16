@@ -18,7 +18,7 @@ public class CalendarParser {
     public List<VEvent> parse(InputStream is) throws IOException {
 
         BufferedReader r = new BufferedReader(new InputStreamReader(is));
-        String line = null;
+        String line;
         VEvent currentEvent = null;
         List<VEvent> events = new ArrayList<VEvent>();
 
