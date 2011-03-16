@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
-              android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#55000000">
+              android:padding="10px"
+              android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="#FFFFFF">
 
     <ListView android:id="@+id/venueList"
               android:layout_height="fill_parent"
               android:layout_width="fill_parent"/>
 
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5px"
-                  android:background="@drawable/softwhitegradient"
-                  android:orientation="horizontal" android:layout_below="@+id/venueList" padding="10px">
+                  android:orientation="horizontal" android:layout_below="@+id/venueList">
 
 
         <Button android:id="@+id/venueok" android:text="@string/ok" android:layout_height="wrap_content"
-                android:paddingLeft="20px" android:paddingRight="20px"
+                android:paddingLeft="30px" android:paddingRight="30px"
                 android:layout_width="wrap_content"/>
 
         <Button android:id="@+id/venuecancel" android:text="@string/cancel" android:layout_height="wrap_content"

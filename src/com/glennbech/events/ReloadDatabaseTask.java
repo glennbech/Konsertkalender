@@ -53,13 +53,19 @@ class ReloadDatabaseTask extends TimerTask {
             for (VEvent e : latestList) {
                 eventStore.createEvent(e);
             }
+
+
             if (!oldList.equals(latestList)) {
                 Log.d(TAG, "The old and the new List is not the same. Notify the user of change.");
                 context.sendBroadcast(new Intent(DATABASE_READY));
                 HashSet set = new HashSet(latestList);
                 set.removeAll(oldList);
-                Log.d(TAG, "The new list has a diff of " + set.size() + " events.");
-                notify(context.getString(R.string.notificationHeader), context.getString(R.string.notification), new ArrayList(set));
+                if (set.size() != 0) {
+                    Log.d(TAG, "The new list has a diff of " + set.size() + " events.");
+                    notify(context.getString(R.string.notificationHeader), context.getString(R.string.notification), new ArrayList<VEvent>(set));
+                } else {
+                    Log.d(TAG, "List changed but no new items" + set.size() + " events.");
+                }
             }
 
         } catch (IOException e) {

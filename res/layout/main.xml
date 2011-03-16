@@ -6,12 +6,8 @@
               android:layout_height="fill_parent" android:background="#FFFFFF">
 
     <LinearLayout android:id="@+id/topmenu" android:layout_height="wrap_content" android:layout_width="fill_parent"
-                  android:gravity="left" android:layout_marginTop="5px">
+                  android:gravity="left" android:layout_marginTop="5px" android:paddingLeft="3px">
 
-
-        <ImageButton android:id="@+id/gotofavoritebutton" android:src="@drawable/buttonfavorite"
-                     android:layout_height="wrap_content"
-                     android:layout_width="wrap_content"/>
 
         <ImageButton android:id="@+id/filterbutton" android:src="@drawable/list"
                      android:layout_height="wrap_content"
@@ -23,6 +19,11 @@
         <ImageButton android:id="@+id/searchbutton" android:src="@drawable/searchicon"
                      android:layout_height="wrap_content"
                      android:layout_width="wrap_content"/>
+
+        <ImageButton android:id="@+id/gotofavoritebutton" android:src="@drawable/buttonfavorite"
+                     android:layout_height="wrap_content"
+                     android:layout_width="wrap_content"/>
+
     </LinearLayout>
 
     <View android:layout_height="2px" android:layout_width="fill_parent" android:padding="1px"
