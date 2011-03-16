@@ -9,6 +9,7 @@ import android.util.Log;
 import com.glennbech.events.eventlist.EventList;
 import com.glennbech.events.eventlist.EventListFactory;
 import com.glennbech.events.parser.VEvent;
+import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ class ReloadDatabaseTask extends TimerTask {
     @Override
     public void run() {
         Log.d(TAG, "run - updating database");
-        final SQLiteEventStore eventStore = new SQLiteEventStore(context);
+        final EventStore eventStore = new SQLiteEventStore(context);
 
         try {
             // load database

@@ -3,6 +3,8 @@ package com.glennbech.events.eventlist;
 import android.content.Context;
 
 /**
+ * Creates an Event list object. Hides concrete classes.
+ *
  * @author Glenn Bech
  */
 public class EventListFactory {

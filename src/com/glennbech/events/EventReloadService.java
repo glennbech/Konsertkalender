@@ -12,8 +12,6 @@ import static com.glennbech.events.TimerConsts.SECOND;
 
 /**
  *
- *
- *
  * Service that schedules the Database Reload task.
  */
 public class EventReloadService extends Service {

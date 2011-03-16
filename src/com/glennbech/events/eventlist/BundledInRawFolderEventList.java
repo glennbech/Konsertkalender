@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
+ * Used for debugging. I can put a calendar file in the res/raw folder and load it here.
  * @author Glenn Bech
  */
 class BundledInRawFolderEventList implements EventList {

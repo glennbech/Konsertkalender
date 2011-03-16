@@ -10,11 +10,13 @@ import java.net.URLConnection;
 import java.util.List;
 
 /**
+ * Retrieves a list of events from an .ics file located on the net somewhere.
+ *
  * @author Glenn Bech
  */
- class URLBasedEventList implements EventList {
+class URLBasedEventList implements EventList {
     private static final String FEED_URL = "http://www.rockefeller.no/kalender.ics";
-   // private static final String FEED_URL = "http://bechonjava.squarespace.com/storage/android/kalender.ics";
+    // private static final String FEED_URL = "http://bechonjava.squarespace.com/storage/android/kalender.ics";
 
     public List<VEvent> getEvents() throws IOException {
         // Fetch feed

@@ -13,6 +13,7 @@ import android.widget.*;
 import com.glennbech.events.eventlist.EventList;
 import com.glennbech.events.eventlist.EventListFactory;
 import com.glennbech.events.parser.VEvent;
+import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
     private static final int DIALOG_VENUE = 2;
     private ProgressDialog progress;
     private SectionedAdapter adapter;
-    private SQLiteEventStore store;
+    private EventStore store;
     private static final String TAG = MainActivity.class.getName();
 
     /**

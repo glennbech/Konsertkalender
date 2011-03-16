@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * Interface to get new calendar events
+ *
  * @author Glenn Bech
  */
 public interface EventList {

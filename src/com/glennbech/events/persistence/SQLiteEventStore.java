@@ -14,9 +14,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * DataStore
+ *
  * @author Glenn Bech
  */
-public class SQLiteEventStore extends SQLiteOpenHelper {
+public class SQLiteEventStore extends SQLiteOpenHelper implements EventStore {
 
     private static final String ddlCreateMessage = "CREATE TABLE IF NOT EXISTS EVENT (id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "uid TEXT," +
@@ -169,7 +171,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         return locations;
     }
 
-    public List<VEvent> searchByVenues(List<String> locations) {
+    public List<VEvent> searchByLocations(List<String> locations) {
         if (locations.size() < 1) {
             throw new IllegalArgumentException();
         }

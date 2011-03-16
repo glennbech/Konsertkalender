@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
 import java.io.Serializable;
@@ -22,7 +23,7 @@ class VenuePickerDialog extends Dialog implements DialogInterface.OnDismissListe
 
 
     private final Context context;
-    private SQLiteEventStore store;
+    private EventStore store;
 
     private List<LocationItem> allLocations = new ArrayList<LocationItem>();
     private List<String> selectedLocations = new ArrayList<String>();
@@ -129,7 +130,7 @@ class VenuePickerDialog extends Dialog implements DialogInterface.OnDismissListe
         Intent i = new Intent().setClass(context, GenericEventListActivity.class);
         List<String> selectedLocations = getSelectedLocations();
         if (selectedLocations.size() != 0) {
-            i.putExtra(GenericEventListActivity.INTENT_EXTRA_EVENTS, (Serializable) store.searchByVenues(selectedLocations));
+            i.putExtra(GenericEventListActivity.INTENT_EXTRA_EVENTS, (Serializable) store.searchByLocations(selectedLocations));
             i.putExtra(GenericEventListActivity.INTENT_EXTRA_CAPTION, context.getResources().getString(R.string.searchresult));
             context.startActivity(i);
         }

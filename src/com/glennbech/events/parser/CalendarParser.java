@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsible for parsing a ical celandar into calendar Items.
+ */
 public class CalendarParser {
 
     private static final String VEVENT_FIELD_URL = "URL;VALUE=URI:";

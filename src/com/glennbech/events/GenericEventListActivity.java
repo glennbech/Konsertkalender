@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.glennbech.events.parser.VEvent;
+import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class GenericEventListActivity extends Activity {
     static final String INTENT_EXTRA_EVENTS = "events";
     static final String INTENT_EXTRA_CAPTION = "caption";
     private SectionedAdapter adapter;
-    private SQLiteEventStore store;
+    private EventStore store;
     private List<VEvent> favorites;
     private String caption;
 

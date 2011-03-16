@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.glennbech.events.parser.VEvent;
+import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
 
 import java.text.SimpleDateFormat;
@@ -55,7 +56,7 @@ class EventListAdapter extends ArrayAdapter<VEvent> {
             final ImageButton ib = (ImageButton) v.findViewById(R.id.starbutton);
             ib.setOnClickListener(new Button.OnClickListener() {
                 public void onClick(View view) {
-                    SQLiteEventStore s = new SQLiteEventStore(context);
+                    EventStore s = new SQLiteEventStore(context);
                     if (event.isFavorite()) {
                         s.setFavorite(event.getUid(), event.getStartDate(), false);
                         event.setFavorite(false);
