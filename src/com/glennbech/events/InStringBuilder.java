@@ -1,6 +1,10 @@
 package com.glennbech.events;
 
 /**
+ *
+ * This class builds a string in the format (?,?,?, n) for use in SQL queries like "select * from event where
+ * location in ('John dee','Rockefeller'). I hate this!: -)
+ *
  * @author Glenn Bech
  */
 public class InStringBuilder {
@@ -13,7 +17,8 @@ public class InStringBuilder {
         query.append("(");
         for (int i = 0; i < arguments; i++) {
             query.append("?");
-            if (i != arguments - 1) {
+            boolean moreElements = i != arguments - 1;
+            if (moreElements) {
                 query.append(",");
             }
         }
@@ -21,9 +26,7 @@ public class InStringBuilder {
         return query.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(inString(0));
-    }
+
 
 }
 
