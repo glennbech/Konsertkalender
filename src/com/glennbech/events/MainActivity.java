@@ -24,7 +24,7 @@ import java.util.List;
 
 import static com.glennbech.events.TimerConsts.DAY;
 
-public class EventListActivity extends Activity {
+public class MainActivity extends Activity {
 
     private static final int EVENT_OK = 1;
     private static final int EVENT_ERROR = 99;
@@ -33,7 +33,7 @@ public class EventListActivity extends Activity {
     private ProgressDialog progress;
     private SectionedAdapter adapter;
     private SQLiteEventStore store;
-    private static final String TAG = EventListActivity.class.getName();
+    private static final String TAG = MainActivity.class.getName();
 
     /**
      * Called when the activity is first created.
@@ -50,19 +50,19 @@ public class EventListActivity extends Activity {
         adapter = new EventSectionedAdapter(this);
 
         // Initialize the data in the application.
-        Log.d(EventListActivity.class.getName(), "Loading database.");
+        Log.d(MainActivity.class.getName(), "Loading database.");
         store = new SQLiteEventStore(this);
 
         List<VEvent> events = store.getEvents();
         if (events.size() == 0) {
-            Log.d(EventListActivity.class.getName(), "No events in database. Loading from net.");
+            Log.d(MainActivity.class.getName(), "No events in database. Loading from net.");
             loadFromNet();
         }
 
         ImageButton b = (ImageButton) findViewById(R.id.gotofavoritebutton);
         b.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                Intent i = new Intent().setClass(EventListActivity.this, GenericEventListActivity.class);
+                Intent i = new Intent().setClass(MainActivity.this, GenericEventListActivity.class);
                 i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.getFavorites());
                 i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.favoritter));
                 startActivity(i);
@@ -74,7 +74,7 @@ public class EventListActivity extends Activity {
             public void onClick(View view) {
                 EditText et = (EditText) findViewById(R.id.search);
                 String query = et.getText().toString();
-                Intent i = new Intent().setClass(EventListActivity.this, GenericEventListActivity.class);
+                Intent i = new Intent().setClass(MainActivity.this, GenericEventListActivity.class);
                 i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.search(query.trim()));
                 i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.searchresult));
                 startActivity(i);
@@ -84,7 +84,7 @@ public class EventListActivity extends Activity {
         ImageButton venueFilterButton = (ImageButton) findViewById(R.id.filterbutton);
         venueFilterButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                Dialog newDialog = new VenuePickerDialog(EventListActivity.this);
+                Dialog newDialog = new VenuePickerDialog(MainActivity.this);
                 newDialog.setTitle("Spillesteder");
                 newDialog.setCancelable(true);
                 newDialog.show();
@@ -162,7 +162,7 @@ public class EventListActivity extends Activity {
         progress = ProgressDialog.show(this, "Vennligst vent", "Laster program", true);
         Runnable r = new Runnable() {
             public void run() {
-                EventList el = EventListFactory.getEventList(EventListActivity.this);
+                EventList el = EventListFactory.getEventList(MainActivity.this);
                 List<VEvent> allEvents;
                 try {
                     store.clear();
@@ -216,12 +216,12 @@ public class EventListActivity extends Activity {
         }
 
         if (upComingEvents.size() != 0) {
-            Log.d(EventListActivity.class.getName(), "ComingEvents List has values " + upComingEvents.size());
+            Log.d(MainActivity.class.getName(), "ComingEvents List has values " + upComingEvents.size());
             adapter.addSection("Neste 7 dager", new EventListAdapter(this, adapter, R.layout.itemrow, upComingEvents));
         }
 
         if (otherEvents.size() != 0) {
-            Log.d(EventListActivity.class.getName(), "Older" + GenericEventListActivity.ESTRA_EVENTS + " List has values " + otherEvents.size());
+            Log.d(MainActivity.class.getName(), "Older" + GenericEventListActivity.ESTRA_EVENTS + " List has values " + otherEvents.size());
             adapter.addSection(" ", new EventListAdapter(this, adapter, R.layout.itemrow, otherEvents));
         }
 
@@ -267,7 +267,7 @@ public class EventListActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Toast.makeText(EventListActivity.this, "Programmet oppdatert", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Programmet oppdatert", Toast.LENGTH_LONG).show();
             redrawList(store.getEvents());
         }
     };
@@ -278,11 +278,11 @@ public class EventListActivity extends Activity {
     public final ServiceConnection onServiceConntection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             EventService service= ((EventService.LocalBinder) iBinder).getService();
-            Log.d(EventListActivity.class.getName(), "Service connected.");
+            Log.d(MainActivity.class.getName(), "Service connected.");
         }
 
         public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(EventListActivity.class.getName(), "Service disconnected.");
+            Log.d(MainActivity.class.getName(), "Service disconnected.");
         }
     };
 }
