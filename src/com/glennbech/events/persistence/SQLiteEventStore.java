@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.glennbech.events.InStringBuilder;
 import com.glennbech.events.parser.VEvent;
 
 import java.util.ArrayList;
@@ -168,6 +167,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper implements EventStore {
             locations.add(result.getString(0));
             result.moveToNext();
         }
+        writableDatabase.close();
         return locations;
     }
 

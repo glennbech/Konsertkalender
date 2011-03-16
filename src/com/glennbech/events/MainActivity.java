@@ -15,6 +15,8 @@ import com.glennbech.events.eventlist.EventListFactory;
 import com.glennbech.events.parser.VEvent;
 import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
+import com.glennbech.events.service.EventReloadService;
+import com.glennbech.events.service.ReloadDatabaseTask;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -23,14 +25,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.glennbech.events.TimerConsts.DAY;
-
 public class MainActivity extends Activity {
 
     private static final int EVENT_OK = 1;
     private static final int EVENT_ERROR = 99;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("E dd.MM.yyyy hh:mm");
     private static final int DIALOG_VENUE = 2;
+    protected static final int SECOND = 1000;
+    protected static final int MINUTE = SECOND * 60;
+    protected static final int HOUR = MINUTE * 60;
+    protected static final int DAY = HOUR * 24;
     private ProgressDialog progress;
     private SectionedAdapter adapter;
     private EventStore store;
@@ -107,15 +111,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onPause
-            () {
+    protected void onPause() {
         super.onPause();
         this.unregisterReceiver(this.broadcastReceiver);
     }
 
     @Override
-    protected void onResume
-            () {
+    protected void onResume() {
         super.onResume();
 
         IntentFilter filter = new IntentFilter();
@@ -128,8 +130,7 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy
-            () {
+    protected void onDestroy() {
         super.onDestroy();
         unbindService(onServiceConntection);
     }
@@ -141,13 +142,13 @@ public class MainActivity extends Activity {
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Kan ikke hente program. Nettverksfeil?")
+        builder.setMessage(getResources().getString(R.string.networkerror))
                 .setCancelable(false)
-                .setPositiveButton("Avbryt", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finish();
                     }
-                }).setNegativeButton("Forsøk igjen", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
                 loadFromNet();

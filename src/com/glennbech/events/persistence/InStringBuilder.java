@@ -1,4 +1,4 @@
-package com.glennbech.events;
+package com.glennbech.events.persistence;
 
 /**
  *
@@ -7,7 +7,7 @@ package com.glennbech.events;
  *
  * @author Glenn Bech
  */
-public class InStringBuilder {
+ class InStringBuilder {
 
     public static String inString(int arguments) {
         if (arguments < 1) {

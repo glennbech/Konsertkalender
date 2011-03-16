@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.glennbech.events.parser.VEvent;
 import com.glennbech.events.persistence.EventStore;
 import com.glennbech.events.persistence.SQLiteEventStore;
+import com.glennbech.events.service.ReloadDatabaseTask;
 
 import java.util.List;
 

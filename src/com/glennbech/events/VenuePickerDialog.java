@@ -126,6 +126,11 @@ class VenuePickerDialog extends Dialog implements DialogInterface.OnDismissListe
         }
     }
 
+    /**
+     * If we have more than zero selected items, we do a search and displays the search result
+     *
+     * @param dialogInterface
+     */
     public void onDismiss(DialogInterface dialogInterface) {
         Intent i = new Intent().setClass(context, GenericEventListActivity.class);
         List<String> selectedLocations = getSelectedLocations();
@@ -135,5 +140,41 @@ class VenuePickerDialog extends Dialog implements DialogInterface.OnDismissListe
             context.startActivity(i);
         }
     }
+
+    /**
+     * Used locally to hold what location is selected.
+     */
+    private class LocationItem {
+
+        private String locationName;
+        private boolean enabled;
+
+        public LocationItem(String locationName) {
+            this.locationName = locationName;
+        }
+
+        public LocationItem(String string, boolean b) {
+            this.locationName = string;
+            this.enabled = b;
+        }
+
+        public String getLocationName() {
+            return locationName;
+        }
+
+        public void setLocationName(String locationName) {
+            this.locationName = locationName;
+        }
+
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
+
+    }
+
 
 }

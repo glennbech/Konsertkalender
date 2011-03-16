@@ -65,6 +65,6 @@
 
     <string name="locations">Valgte spillesteder</string>
     <string name="choseLocations">Velg spillesteder</string>
-
+    <string name="networkerror">Nettverksfeil. Vil du forsøke igjen?</string>
 
 </resources>

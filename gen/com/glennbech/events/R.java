@@ -151,6 +151,7 @@ containing a value of this type.
         public static final int location=0x7f07000f;
         public static final int locations=0x7f07001b;
         public static final int minefavoritter=0x7f07000a;
+        public static final int networkerror=0x7f07001d;
         public static final int notification=0x7f070016;
         /**  Notifications 
          */

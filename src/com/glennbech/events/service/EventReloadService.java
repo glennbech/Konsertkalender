@@ -1,4 +1,4 @@
-package com.glennbech.events;
+package com.glennbech.events.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.util.Log;
 
 import java.util.Timer;
 
-import static com.glennbech.events.TimerConsts.SECOND;
 
 /**
  *
@@ -16,6 +15,7 @@ import static com.glennbech.events.TimerConsts.SECOND;
  */
 public class EventReloadService extends Service {
 
+    private static final int SECOND = 1000 ;
     private static final int MINUTE = 60 * SECOND;
     private final IBinder binder = new LocalBinder();
     private Timer timer;
@@ -40,7 +40,7 @@ public class EventReloadService extends Service {
     }
 
     public class LocalBinder extends Binder {
-        EventReloadService getService() {
+        public EventReloadService getService() {
             return (EventReloadService.this);
         }
     }
