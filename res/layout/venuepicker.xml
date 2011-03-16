@@ -6,15 +6,17 @@
               android:layout_height="fill_parent"
               android:layout_width="fill_parent"/>
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal" android:layout_below="@+id/venueList" paddingLeft="5px">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5px"
+                  android:background="@drawable/softwhitegradient"
+                  android:orientation="horizontal" android:layout_below="@+id/venueList" padding="10px">
 
-        <Button android:id="@+id/venuecancel" android:text="ok" android:layout_height="wrap_content"
-                android:layout_width="wrap_content" android:layout_marginLeft="10px" android:layout_marginRight="10px"/>
 
-        <Button android:id="@+id/venueok" android:text="ok" android:layout_height="wrap_content"
-                android:layout_marginLeft="10px" android:paddingLeft="10px"
+        <Button android:id="@+id/venueok" android:text="@string/ok" android:layout_height="wrap_content"
+                android:paddingLeft="20px" android:paddingRight="20px"
                 android:layout_width="wrap_content"/>
+
+        <Button android:id="@+id/venuecancel" android:text="@string/cancel" android:layout_height="wrap_content"
+                android:layout_width="wrap_content" android:paddingLeft="20px" android:paddingRight="20px"/>
 
 
     </LinearLayout>

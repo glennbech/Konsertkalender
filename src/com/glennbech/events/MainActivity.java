@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         // register the service, and create it if it is not running.
-        bindService(new Intent(this, EventService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, EventReloadService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
 
         adapter = new EventSectionedAdapter(this);
 
@@ -63,8 +63,8 @@ public class MainActivity extends Activity {
         b.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent().setClass(MainActivity.this, GenericEventListActivity.class);
-                i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.getFavorites());
-                i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.favoritter));
+                i.putExtra(GenericEventListActivity.INTENT_EXTRA_EVENTS, (Serializable) store.getFavorites());
+                i.putExtra(GenericEventListActivity.INTENT_EXTRA_CAPTION, getResources().getString(R.string.favoritter));
                 startActivity(i);
             }
         });
@@ -75,18 +75,19 @@ public class MainActivity extends Activity {
                 EditText et = (EditText) findViewById(R.id.search);
                 String query = et.getText().toString();
                 Intent i = new Intent().setClass(MainActivity.this, GenericEventListActivity.class);
-                i.putExtra(GenericEventListActivity.ESTRA_EVENTS, (Serializable) store.search(query.trim()));
-                i.putExtra(GenericEventListActivity.EXTRA_CAPTION, getResources().getString(R.string.searchresult));
+                i.putExtra(GenericEventListActivity.INTENT_EXTRA_EVENTS, (Serializable) store.search(query.trim()));
+                i.putExtra(GenericEventListActivity.INTENT_EXTRA_CAPTION, getResources().getString(R.string.searchresult));
                 startActivity(i);
             }
         });
 
         ImageButton venueFilterButton = (ImageButton) findViewById(R.id.filterbutton);
         venueFilterButton.setOnClickListener(new Button.OnClickListener() {
+            final List<String> selectedLocations = new ArrayList<String>();
+
             public void onClick(View view) {
-                Dialog newDialog = new VenuePickerDialog(MainActivity.this);
-                newDialog.setTitle("Spillesteder");
-                newDialog.setCancelable(true);
+                final VenuePickerDialog newDialog = new VenuePickerDialog(MainActivity.this);
+
                 newDialog.show();
 
             }
@@ -99,18 +100,21 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(clickedEvent.getUrl())));
             }
         });
+
         events = store.getEvents();
         redrawList(events);
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause
+            () {
         super.onPause();
         this.unregisterReceiver(this.broadcastReceiver);
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume
+            () {
         super.onResume();
 
         IntentFilter filter = new IntentFilter();
@@ -123,7 +127,8 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy
+            () {
         super.onDestroy();
         unbindService(onServiceConntection);
     }
@@ -221,7 +226,7 @@ public class MainActivity extends Activity {
         }
 
         if (otherEvents.size() != 0) {
-            Log.d(MainActivity.class.getName(), "Older" + GenericEventListActivity.ESTRA_EVENTS + " List has values " + otherEvents.size());
+            Log.d(MainActivity.class.getName(), "Older" + GenericEventListActivity.INTENT_EXTRA_EVENTS + " List has values " + otherEvents.size());
             adapter.addSection(" ", new EventListAdapter(this, adapter, R.layout.itemrow, otherEvents));
         }
 
@@ -277,7 +282,7 @@ public class MainActivity extends Activity {
      */
     public final ServiceConnection onServiceConntection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            EventService service= ((EventService.LocalBinder) iBinder).getService();
+            EventReloadService reloadService = ((EventReloadService.LocalBinder) iBinder).getService();
             Log.d(MainActivity.class.getName(), "Service connected.");
         }
 

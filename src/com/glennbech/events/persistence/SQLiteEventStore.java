@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import com.glennbech.events.InStringBuilder;
 import com.glennbech.events.parser.VEvent;
 
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
 
         SQLiteDatabase writableDatabase = getWritableDatabase();
         Cursor result = writableDatabase.rawQuery(query, null);
-        List<VEvent> messageList = getMessagesFromCursor(result);
+        List<VEvent> messageList = getEventsFromCursor(result);
         writableDatabase.close();
         Log.d(TAG, messageList.toString());
         return messageList;
@@ -107,7 +108,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         SQLiteDatabase writableDatabase = getWritableDatabase();
         Cursor result = writableDatabase.rawQuery(query, new String[]{searchString});
 
-        List<VEvent> messageList = getMessagesFromCursor(result);
+        List<VEvent> messageList = getEventsFromCursor(result);
         writableDatabase.close();
         return messageList;
     }
@@ -126,7 +127,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         db.close();
     }
 
-    private List<VEvent> getMessagesFromCursor(Cursor result) {
+    private List<VEvent> getEventsFromCursor(Cursor result) {
         List<VEvent> messageList = new ArrayList<VEvent>();
         result.moveToFirst();
         while (!result.isAfterLast()) {
@@ -152,6 +153,37 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
         return messageList;
     }
 
+
+    public List<String> getLocations() {
+
+        String q = "SELECT DISTINCT location from EVENT";
+        SQLiteDatabase writableDatabase = getWritableDatabase();
+        Cursor result = writableDatabase.rawQuery(q, null);
+        List<String> locations = new ArrayList<String>();
+
+        result.moveToFirst();
+        while (!result.isAfterLast()) {
+            locations.add(result.getString(0));
+            result.moveToNext();
+        }
+        return locations;
+    }
+
+    public List<VEvent> searchByVenues(List<String> locations) {
+        if (locations.size() < 1) {
+            throw new IllegalArgumentException();
+        }
+        StringBuffer query = new StringBuffer("SELECT id, EVENT.uid, location, summary, url, startdate , enddate, isnew, EVENT_FAVORITE.uid as isFavorite " +
+                "from EVENT LEFT OUTER JOIN EVENT_FAVORITE " +
+                "ON EVENT.uid = EVENT_FAVORITE.uid" +
+                " WHERE location IN " + InStringBuilder.inString(locations.size()));
+
+        SQLiteDatabase writableDatabase = getWritableDatabase();
+        Cursor c = writableDatabase.rawQuery(query.toString(), locations.toArray(new String[0]));
+        return getEventsFromCursor(c);
+    }
+
+
     public List<VEvent> getFavorites() {
         String query = "SELECT id, EVENT.uid, location, summary, url, startdate , enddate, isnew, EVENT_FAVORITE.uid as isFavorite " +
                 "from EVENT LEFT OUTER JOIN EVENT_FAVORITE " +
@@ -161,7 +193,7 @@ public class SQLiteEventStore extends SQLiteOpenHelper {
 
         SQLiteDatabase writableDatabase = getWritableDatabase();
         Cursor result = writableDatabase.rawQuery(query, null);
-        List<VEvent> messageList = getMessagesFromCursor(result);
+        List<VEvent> messageList = getEventsFromCursor(result);
         writableDatabase.close();
         return messageList;
     }

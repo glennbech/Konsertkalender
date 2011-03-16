@@ -60,6 +60,11 @@
 
     <string name="notificationOnErrorHeader">Konsertprogram</string>
     <string name="notificationOnError">Feil under henting av konsertprogram. Forsøker igjen om</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Avbryt</string>
+
+    <string name="locations">Valgte spillesteder</string>
+    <string name="choseLocations">Velg spillesteder</string>
 
 
 </resources>

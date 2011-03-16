@@ -22,8 +22,8 @@ import java.util.List;
  */
 public class GenericEventListActivity extends Activity {
 
-    static final String ESTRA_EVENTS = "events";
-    static final String EXTRA_CAPTION = "caption";
+    static final String INTENT_EXTRA_EVENTS = "events";
+    static final String INTENT_EXTRA_CAPTION = "caption";
     private SectionedAdapter adapter;
     private SQLiteEventStore store;
     private List<VEvent> favorites;
@@ -32,6 +32,7 @@ public class GenericEventListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.favorites);
         store = new SQLiteEventStore(this);
         adapter = new EventSectionedAdapter(this);
@@ -47,7 +48,6 @@ public class GenericEventListActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(ReloadDatabaseTask.MY_NOTIFICATION_ID);
@@ -57,7 +57,6 @@ public class GenericEventListActivity extends Activity {
 
         TextView caption = (TextView) findViewById(R.id.caption);
         caption.setText(this.caption);
-
         redrawList(favorites);
     }
 

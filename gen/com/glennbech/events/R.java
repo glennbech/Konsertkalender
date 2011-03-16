@@ -113,9 +113,9 @@ containing a value of this type.
         public static final int title=0x7f0a0008;
         public static final int topmenu=0x7f0a0002;
         public static final int venueList=0x7f0a0016;
-        public static final int venuecancel=0x7f0a0017;
+        public static final int venuecancel=0x7f0a0018;
         public static final int venuename=0x7f0a0014;
-        public static final int venueok=0x7f0a0018;
+        public static final int venueok=0x7f0a0017;
         public static final int venuerow=0x7f0a0013;
         public static final int venueselected=0x7f0a0015;
     }
@@ -141,11 +141,14 @@ containing a value of this type.
         public static final int app_label=0x7f070006;
         public static final int app_name=0x7f070000;
         public static final int arrangement=0x7f070014;
+        public static final int cancel=0x7f07001a;
+        public static final int choseLocations=0x7f07001c;
         public static final int date=0x7f07000e;
         public static final int favorite=0x7f070008;
         public static final int favoritter=0x7f070005;
         public static final int johndee=0x7f070001;
         public static final int location=0x7f07000f;
+        public static final int locations=0x7f07001b;
         public static final int minefavoritter=0x7f07000a;
         public static final int notification=0x7f070016;
         /**  Notifications 
@@ -154,6 +157,7 @@ containing a value of this type.
         public static final int notificationOnError=0x7f070018;
         public static final int notificationOnErrorHeader=0x7f070017;
         public static final int nyfavoritt=0x7f07000c;
+        public static final int ok=0x7f070019;
         public static final int refresh=0x7f07000b;
         public static final int rockefeller=0x7f070003;
         public static final int search_hint=0x7f070007;

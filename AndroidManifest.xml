@@ -38,7 +38,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".EventService"/>
+        <reloadService android:name=".EventReloadService"/>
 
 
     </application>
