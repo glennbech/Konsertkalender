@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content"
+              android:layout_width="300px" android:padding="5px" android:orientation="vertical">
+
+    <TextView android:id="@+id/textInputDialogTitle"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent" android:gravity="center" android:paddingTop="5px"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content"
+                  android:layout_width="fill_parent" android:orientation="vertical"
+                  android:background="#FFFFFF">
+
+        <EditText android:id="@+id/textInputEditText"
+                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"/>
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal" android:gravity="center" android:layout_height="wrap_content"
+                  android:layout_width="fill_parent" android:background="#DDDDDD" android:padding="5px">
+        <Button android:id="@+id/dialogTextInputOkbutton" android:layout_height="wrap_content"
+                android:text="@string/ok"
+                android:layout_width="fill_parent" android:layout_weight="1"/>
+
+        <Button android:id="@+id/dialogTextInputCancelButton" android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:layout_width="fill_parent" android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>
+

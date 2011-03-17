@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
     private ProgressDialog progress;
     private SectionedAdapter adapter;
     private EventStore store;
+
     private static final String TAG = MainActivity.class.getName();
 
     /**
@@ -110,8 +111,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        events = store.getEvents();
-        redrawList(events);
+        redrawList(store.getEvents());
     }
 
     @Override
