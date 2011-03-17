@@ -285,6 +285,7 @@ public class MainActivity extends Activity {
     public final ServiceConnection onServiceConntection = new ServiceConnection() {
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             EventReloadService reloadService = ((EventReloadService.LocalBinder) iBinder).getService();
+
             Log.d(MainActivity.class.getName(), "Service connected.");
         }
 

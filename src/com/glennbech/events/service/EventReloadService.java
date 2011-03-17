@@ -10,12 +10,11 @@ import java.util.Timer;
 
 
 /**
- *
  * Service that schedules the Database Reload task.
  */
 public class EventReloadService extends Service {
 
-    private static final int SECOND = 1000 ;
+    private static final int SECOND = 1000;
     private static final int MINUTE = 60 * SECOND;
     private final IBinder binder = new LocalBinder();
     private Timer timer;
@@ -25,7 +24,7 @@ public class EventReloadService extends Service {
         super.onCreate();
         Log.d(EventReloadService.class.getName(), "onCreate");
         timer = new Timer(true);
-        timer.schedule(new ReloadDatabaseTask(this), MINUTE, MINUTE);
+        timer.schedule(new ReloadDatabaseTask(this), MINUTE, 60* MINUTE);
         Log.d(EventReloadService.class.getName(), "Timer task scheduled");
     }
 

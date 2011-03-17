@@ -38,7 +38,7 @@
             </intent-filter>
         </receiver>
 
-        <reloadService android:name=".EventReloadService"/>
+        <service android:name="com.glennbech.events.service.EventReloadService"/>
 
 
     </application>
