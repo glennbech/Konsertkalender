@@ -22,6 +22,11 @@ public class Options {
         this.groups = groups;
     }
 
+    public void add(OptionGroup g) {
+        groups.add(g);
+
+    }
+
     public List<OptionItem> getAllItems() {
 
         List<OptionItem> allItems = new ArrayList<OptionItem>();

@@ -161,14 +161,6 @@ public class MainActivity extends Activity {
         return builder.create();
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.itemmenu, menu);
-    }
-
     private void loadFromNet() {
         progress = ProgressDialog.show(this, "Vennligst vent", "Laster program", true);
         Runnable r = new Runnable() {
@@ -251,31 +243,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        switch (item.getItemId()) {
-            case R.id.share:
-                ListView lv = (ListView) findViewById(R.id.messageList);
-                VEvent event = (VEvent) lv.getItemAtPosition(info.position);
-                share(event);
-                return true;
-        }
-        return true;
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent i = new Intent().setClass(this, ConfigActivity.class);
+        startActivity(i);
+        return super.onOptionsItemSelected(item);
+
     }
-
-    void share(VEvent event) {
-        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        StringBuffer sb = new StringBuffer();
-        sb.append(event.getSummary());
-        sb.append("(").append(dateFormat.format(event.getStartDate())).append(")");
-        sb.append("- ").append(event.getUrl());
-        sb.append("- " + "Send via \"KonsertKalender for Android\"");
-
-        shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, sb.toString());
-        startActivity(Intent.createChooser(shareIntent, event.getSummary()));
-    }
-
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 
