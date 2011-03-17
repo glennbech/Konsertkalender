@@ -182,7 +182,9 @@ public class SQLiteEventStore extends SQLiteOpenHelper implements EventStore {
 
         SQLiteDatabase writableDatabase = getWritableDatabase();
         Cursor c = writableDatabase.rawQuery(query.toString(), locations.toArray(new String[0]));
-        return getEventsFromCursor(c);
+        List<VEvent> eventsFromCursor = getEventsFromCursor(c);
+        writableDatabase.close();
+        return eventsFromCursor;
     }
 
 
