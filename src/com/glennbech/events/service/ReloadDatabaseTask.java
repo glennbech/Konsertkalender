@@ -44,34 +44,35 @@ public class ReloadDatabaseTask extends TimerTask {
         final EventStore eventStore = new SQLiteEventStore(context);
 
         try {
-            // load database
-            final List<VEvent> oldList = eventStore.getEvents();
-            Log.d(TAG, "Checking if this is the first time the application is run.");
-            eventStore.clear();
+            // load database. Lock it down, the app might check if the database is empty and initiate a reload
+            //
+            synchronized (ReloadDatabaseTask.class) {
+                final List<VEvent> oldList = eventStore.getEvents();
+                Log.d(TAG, "Checking if this is the first time the application is run.");
+                eventStore.clear();
 
-            EventList eventList = EventListFactory.getEventList(context);
-            List<VEvent> latestList = eventList.getEvents();
+                EventList eventList = EventListFactory.getEventList(context);
+                List<VEvent> latestList = eventList.getEvents();
 
-            for (VEvent e : latestList) {
-                eventStore.createEvent(e);
-            }
+                for (VEvent e : latestList) {
+                    eventStore.createEvent(e);
+                }
 
-
-            if (!oldList.equals(latestList)) {
-                Log.d(TAG, "The old and the new List is not the same. Notify the user of change.");
-                context.sendBroadcast(new Intent(DATABASE_READY));
-                HashSet set = new HashSet(latestList);
-                set.removeAll(oldList);
-                if (set.size() != 0) {
-                    Log.d(TAG, "The new list has a diff of " + set.size() + " events.");
-                    notify(context.getString(R.string.notificationHeader), context.getString(R.string.notification), new ArrayList<VEvent>(set));
-                } else {
-                    Log.d(TAG, "List changed but no new items" + set.size() + " events.");
+                if (!oldList.equals(latestList)) {
+                    Log.d(TAG, "The old and the new List is not the same. Notify the user of change.");
+                    context.sendBroadcast(new Intent(DATABASE_READY));
+                    HashSet set = new HashSet(latestList);
+                    set.removeAll(oldList);
+                    if (set.size() != 0) {
+                        Log.d(TAG, "The new list has a diff of " + set.size() + " events.");
+                        notify(context.getString(R.string.notificationHeader), context.getString(R.string.notification), new ArrayList<VEvent>(set));
+                    } else {
+                        Log.d(TAG, "List changed but no new items" + set.size() + " events.");
+                    }
                 }
             }
 
         } catch (IOException e) {
-            notify(context.getString(R.string.notificationOnErrorHeader), context.getString(R.string.notificationOnError), null);
             Log.e("Feil under henting av konsertprogram, vi venter til neste gang", e.getMessage(), e);
         }
     }

@@ -58,10 +58,14 @@ public class MainActivity extends Activity {
         Log.d(MainActivity.class.getName(), "Loading database.");
         store = new SQLiteEventStore(this);
 
-        List<VEvent> events = store.getEvents();
-        if (events.size() == 0) {
-            Log.d(MainActivity.class.getName(), "No events in database. Loading from net.");
-            loadFromNet();
+        // don't run it at the same time the Reload Database task is running. The ReloadAtabasetask also requests
+        // a lock on the class object.
+        synchronized (ReloadDatabaseTask.class) {
+            List<VEvent> events = store.getEvents();
+            if (events.size() == 0) {
+                Log.d(MainActivity.class.getName(), "No events in database. Loading from net.");
+                loadFromNet();
+            }
         }
 
         ImageButton b = (ImageButton) findViewById(R.id.gotofavoritebutton);
@@ -169,6 +173,8 @@ public class MainActivity extends Activity {
         progress = ProgressDialog.show(this, "Vennligst vent", "Laster program", true);
         Runnable r = new Runnable() {
             public void run() {
+                // the database task may be updating the datbas. Queue'm up!
+
                 EventList el = EventListFactory.getEventList(MainActivity.this);
                 List<VEvent> allEvents;
                 try {
@@ -182,6 +188,7 @@ public class MainActivity extends Activity {
                     handler.sendEmptyMessage(EVENT_ERROR);
                 }
             }
+
         };
 
         Thread t = new Thread(r);
