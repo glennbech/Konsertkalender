@@ -19,10 +19,15 @@
     <string name="location">Spillested</string>
     <string name="toexternal">Mer info</string>
 
+
+    <!-- Menu -->
+
+    <string name="config">Instillinger</string>
+    <string name="feedback">Kom med feedback!</string>
+
     <!-- search -->
 
     <string name="searchresult">Søkeresultat</string>
-
 
     <string name="addfavorite">Legg til som favoritt</string>
     <string name="addreminder">Påminnelse (kommer..)</string>
@@ -69,13 +74,14 @@
 
     <!-- Config -->
 
-    <string name="notifynew">Nyheter</string>
-    <string name="notifynewdesc">Få en notifikasjon når nye konserter kommer inn i programmet</string>
+    <string name="notifynew">Varsling</string>
+    <string name="notifynewdesc">Varsle meg når konsertprogram \nendrer seg</string>
 
-    <string name="notifyinterval">Interval</string>
-    <string name="notifyintervaldesc">Hvor ofte applikasjonen skal sjekke etter endringer i programmet</string>
+    <string name="notifyinterval">Oppdatering</string>
+    <string name="notifyintervaldesc">Hvor ofte applikasjonen skal sjekke etter endringer i konsertprogrammene</string>
 
     <string name="notifydelivery">Leveringstidspunkt</string>
-    <string name="notifydeliverydesc">Når vil du få melding om oppdateringer i programmet</string>
+    <string name="notifydeliverydesc">Når du vil bli varslet</string>
+
 
 </resources>

@@ -4,12 +4,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="fill_parent" android:paddingBottom="10px" android:paddingTop="10px">
 
-    <TextView android:id="@+id/menuitemtitle" android:layout_height="wrap_content" android:layout_width="wrap_content"
-              android:layout_alignParentLeft="true" android:textSize="9pt" android:textColor="#333333"
-            />
-
-    <TextView android:id="@+id/menuitemdescription" android:layout_height="wrap_content" android:textColor="#222222"
-              android:layout_width="wrap_content" android:textSize="7pt" android:layout_marginTop="5px"
+    <TextView android:id="@+id/menuitemtitle" style="@style/OptionsTitle"/>
+    <TextView android:id="@+id/menuitemdescription" style="@style/OptionsDescription"
               android:layout_below="@+id/menuitemtitle"/>
 
 </RelativeLayout>
