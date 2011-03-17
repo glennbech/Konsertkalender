@@ -1,18 +1,23 @@
 package com.glennbech.events;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import com.glennbech.events.menu.CheckBoxOptionItem;
-import com.glennbech.events.menu.MultiSelectOptionItem;
-import com.glennbech.events.menu.OptionGroup;
-import com.glennbech.events.menu.Options;
+import com.glennbech.events.menu.*;
 import com.glennbech.events.menuadapter.MenuAdapter;
+import com.glennbech.events.menuadapter.MultiSelectDialog;
 
 /**
  * @author Glenn Bech
  */
 public class ConfigActivity extends Activity {
+
+    private Bundle args;
+    public static final String PREFERENCE_FILE_NAME = "config";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +51,40 @@ public class ConfigActivity extends Activity {
 
         notifyUpdateGroup.add(notifyDelivery);
 
-        MenuAdapter menuAdapter = new MenuAdapter(ConfigActivity.this, options);
+        final MenuAdapter menuAdapter = new MenuAdapter(ConfigActivity.this, options);
         ListView lv = (ListView) findViewById(R.id.menuItems);
         lv.setAdapter(menuAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                OptionItem i = (OptionItem) adapterView.getItemAtPosition(pos);
+                if (i instanceof MultiSelectOptionItem) {
+                    args = new Bundle();
+                    args.putSerializable(MultiSelectOptionItem.class.getName(), i);
+                    showDialog(1);
+                } else if (i instanceof CheckBoxOptionItem) {
+                    ((CheckBoxOptionItem) i).setChecked(!((CheckBoxOptionItem) i).isChecked());
+                    menuAdapter.notifyDataSetChanged();
+                    putPreferenceValue(i.getKey(), i.toPrefererenceValue());
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 1) {
+            MultiSelectOptionItem item = (MultiSelectOptionItem) args.getSerializable(MultiSelectOptionItem.class.getName());
+            return new MultiSelectDialog(this, item.getTitle(), (MultiSelectOptionItem) item);
+        }
+        return super.onCreateDialog(id);
+    }
+
+    private void putPreferenceValue(String key, String value) {
+        SharedPreferences.Editor editor = getSharedPreferences(ConfigActivity.PREFERENCE_FILE_NAME, MODE_PRIVATE).edit();
+        editor.putString(key, value);
+        editor.commit();
 
     }
 }

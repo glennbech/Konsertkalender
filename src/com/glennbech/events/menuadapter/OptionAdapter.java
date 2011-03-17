@@ -11,7 +11,6 @@ import com.glennbech.events.R;
 import com.glennbech.events.menu.CheckBoxOptionItem;
 import com.glennbech.events.menu.MultiSelectOptionItem;
 import com.glennbech.events.menu.OptionItem;
-import com.glennbech.events.menu.StringOptionItem;
 
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class OptionAdapter extends ArrayAdapter<OptionItem> {
         OptionItem item = getItem(index);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (item instanceof StringOptionItem || item instanceof MultiSelectOptionItem) {
+        if (item instanceof MultiSelectOptionItem) {
             result = inflater.inflate(R.layout.menuitemstring, null);
             TextView tvTitle = (TextView) result.findViewById(R.id.menuitemtitle);
             TextView tvDescription = (TextView) result.findViewById(R.id.menuitemdescription);

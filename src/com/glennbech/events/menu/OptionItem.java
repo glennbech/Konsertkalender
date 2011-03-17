@@ -1,11 +1,13 @@
 package com.glennbech.events.menu;
 
+import java.io.Serializable;
+
 /**
  * Base class for all Option Items
  *
  * @author Glenn Bech
  */
-public abstract class OptionItem {
+public abstract class OptionItem implements Serializable {
 
     private String key;
     private String title;

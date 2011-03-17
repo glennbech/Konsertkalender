@@ -1,5 +1,6 @@
 package com.glennbech.events.eventlist;
 
+import android.app.backup.FileBackupHelper;
 import android.content.Context;
 
 /**
@@ -16,7 +17,8 @@ public class EventListFactory {
      * @return A event list object that can be used ot get new events.
      */
     public static EventList getEventList(Context context) {
-        return new URLBasedEventList();
+        //return new URLBasedEventList();
+        return new BundledInRawFolderEventList(context);
     }
 
 }
