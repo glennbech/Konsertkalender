@@ -52,8 +52,8 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main);
+        store = new SQLiteEventStore(this);
 
         // register the service, and create it if it is not running.
         bindService(new Intent(this, EventReloadService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
@@ -62,7 +62,6 @@ public class MainActivity extends Activity {
 
         // Initialize the data in the application.
         Log.d(MainActivity.class.getName(), "Loading database.");
-        store = new SQLiteEventStore(this);
 
         // don't run it at the same time the Reload Database task is running. The ReloadAtabasetask also requests
         // a lock on the class object.

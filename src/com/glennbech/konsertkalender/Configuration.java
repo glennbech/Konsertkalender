@@ -46,7 +46,7 @@ public class Configuration {
      */
     public int getUpdateHour() {
 
-        String hourString = preferences.getString(NOTIFICATION_DELIVERY_HOUR, null);
+        String hourString = preferences.getString(NOTIFICATION_DELIVERY_HOUR, "-1");
         return Integer.parseInt(hourString);
 
     }
