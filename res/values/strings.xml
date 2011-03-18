@@ -33,34 +33,14 @@
     <string name="addreminder">Påminnelse (kommer..)</string>
     <string name="arrangement">Arrangement</string>
 
-    <string-array name="deliverhour">
-        <item>08:00</item>
-        <item>09:00</item>
-        <item>10:00</item>
-        <item>11:00</item>
-        <item>12:00</item>
-        <item>13:00</item>
-        <item>14:00</item>
-        <item>15:00</item>
-        <item>16:00</item>
-        <item>17:00</item>
-        <item>18:00</item>
-        <item>19:00</item>
-        <item>20:00</item>
-        <item>21:00</item>
-    </string-array>
-
-    <string-array name="timeinadvance">
-
-        <item>1 Dag</item>
-        <item>1 Uke</item>
-        <item>4 Uker</item>
-
-    </string-array>
-
     <!-- Notifications -->
 
-    <string name="notificationHeader">Konsertprogram</string>
+    <string name="notificationMainHeader">Varsling</string>
+
+    <string name="notificationnewsheader">Varsling ved nyheter</string>
+    <string name="notificationnewsheaderfavs">Varsling i forkant av favoritter</string>
+
+
     <string name="notification">Programmeter opdpatert. Velg for å se nyheter.</string>
 
     <string name="notificationOnErrorHeader">Konsertprogram</string>
@@ -77,10 +57,19 @@
     <string name="notifynew">Varsling</string>
     <string name="notifynewdesc">Varsle meg når konsertprogram \nendrer seg</string>
 
+    <string name="notifyfavorites">Huskeliste</string>
+    <string name="notifyfavoritesdesc">Varsle meg når konserter på min \nhuskeliste nærmer seg.</string>
+
+    <string name="notifyfavoritesdaysinadvance">Forvarsel</string>
+    <string name="notifyfavoritesdaysinadvancedesc">Hvor mange dager i forkant du vil bli varslet om konserter på din
+        huskeliste
+    </string>
+
+
     <string name="notifyinterval">Oppdatering</string>
     <string name="notifyintervaldesc">Hvor ofte applikasjonen skal sjekke etter endringer i konsertprogrammene</string>
 
-    <string name="notifydelivery">Leveringstidspunkt</string>
+    <string name="notifydelivery">Varslingstidspunkt</string>
     <string name="notifydeliverydesc">Når du vil bli varslet</string>
 
 

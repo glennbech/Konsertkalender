@@ -24,7 +24,7 @@ public class EventReloadService extends Service {
         super.onCreate();
         Log.d(EventReloadService.class.getName(), "onCreate");
         timer = new Timer(false);
-        timer.schedule(new ReloadDatabaseTask(this), MINUTE,  MINUTE*60);
+        timer.schedule(new ReloadDatabaseTask(this), MINUTE,  MINUTE);
         Log.d(EventReloadService.class.getName(), "Timer task scheduled");
     }
 

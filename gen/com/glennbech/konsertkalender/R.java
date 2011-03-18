@@ -8,10 +8,6 @@
 package com.glennbech.konsertkalender;
 
 public final class R {
-    public static final class array {
-        public static final int deliverhour=0x7f090000;
-        public static final int timeinadvance=0x7f090001;
-    }
     public static final class attr {
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
@@ -92,44 +88,44 @@ containing a value of this type.
         public static final int starunchecked=0x7f02001b;
     }
     public static final class id {
-        public static final int ad=0x7f0b000c;
-        public static final int back=0x7f0b000a;
-        public static final int caption=0x7f0b000b;
-        public static final int date=0x7f0b0012;
-        public static final int dialogTextInputCancelButton=0x7f0b0005;
-        public static final int dialogTextInputOkbutton=0x7f0b0004;
-        public static final int divider=0x7f0b0007;
-        public static final int dividertext=0x7f0b0008;
-        public static final int favoritelist=0x7f0b000d;
-        public static final int filterbutton=0x7f0b0015;
-        public static final int gotofavoritebutton=0x7f0b0018;
-        public static final int homebutton=0x7f0b0013;
-        public static final int itemrow=0x7f0b000e;
-        public static final int location=0x7f0b0011;
-        public static final int mainLayout=0x7f0b0000;
-        public static final int menuItems=0x7f0b0001;
-        public static final int menuitemcheckbox=0x7f0b001c;
-        public static final int menuitemconfig=0x7f0b0023;
-        public static final int menuitemdescription=0x7f0b001b;
-        public static final int menuitemfeedback=0x7f0b0024;
-        public static final int menuitemtitle=0x7f0b001a;
-        public static final int messageList=0x7f0b0019;
-        public static final int optionSpinner=0x7f0b0003;
-        public static final int sceneicon=0x7f0b0010;
-        public static final int search=0x7f0b0016;
-        public static final int searchbutton=0x7f0b0017;
-        public static final int share=0x7f0b0025;
-        public static final int starbutton=0x7f0b0014;
-        public static final int textInputDialogTitle=0x7f0b0002;
-        public static final int textInputEditText=0x7f0b0006;
-        public static final int title=0x7f0b000f;
-        public static final int topmenu=0x7f0b0009;
-        public static final int venueList=0x7f0b0020;
-        public static final int venuecancel=0x7f0b0022;
-        public static final int venuename=0x7f0b001e;
-        public static final int venueok=0x7f0b0021;
-        public static final int venuerow=0x7f0b001d;
-        public static final int venueselected=0x7f0b001f;
+        public static final int ad=0x7f0a000c;
+        public static final int back=0x7f0a000a;
+        public static final int caption=0x7f0a000b;
+        public static final int date=0x7f0a0012;
+        public static final int dialogTextInputCancelButton=0x7f0a0005;
+        public static final int dialogTextInputOkbutton=0x7f0a0004;
+        public static final int divider=0x7f0a0007;
+        public static final int dividertext=0x7f0a0008;
+        public static final int favoritelist=0x7f0a000d;
+        public static final int filterbutton=0x7f0a0015;
+        public static final int gotofavoritebutton=0x7f0a0018;
+        public static final int homebutton=0x7f0a0013;
+        public static final int itemrow=0x7f0a000e;
+        public static final int location=0x7f0a0011;
+        public static final int mainLayout=0x7f0a0000;
+        public static final int menuItems=0x7f0a0001;
+        public static final int menuitemcheckbox=0x7f0a001c;
+        public static final int menuitemconfig=0x7f0a0023;
+        public static final int menuitemdescription=0x7f0a001b;
+        public static final int menuitemfeedback=0x7f0a0024;
+        public static final int menuitemtitle=0x7f0a001a;
+        public static final int messageList=0x7f0a0019;
+        public static final int optionSpinner=0x7f0a0003;
+        public static final int sceneicon=0x7f0a0010;
+        public static final int search=0x7f0a0016;
+        public static final int searchbutton=0x7f0a0017;
+        public static final int share=0x7f0a0025;
+        public static final int starbutton=0x7f0a0014;
+        public static final int textInputDialogTitle=0x7f0a0002;
+        public static final int textInputEditText=0x7f0a0006;
+        public static final int title=0x7f0a000f;
+        public static final int topmenu=0x7f0a0009;
+        public static final int venueList=0x7f0a0020;
+        public static final int venuecancel=0x7f0a0022;
+        public static final int venuename=0x7f0a001e;
+        public static final int venueok=0x7f0a0021;
+        public static final int venuerow=0x7f0a001d;
+        public static final int venueselected=0x7f0a001f;
     }
     public static final class layout {
         public static final int config=0x7f030000;
@@ -145,8 +141,8 @@ containing a value of this type.
         public static final int venuepicker=0x7f03000a;
     }
     public static final class menu {
-        public static final int context=0x7f0a0000;
-        public static final int itemmenu=0x7f0a0001;
+        public static final int context=0x7f090000;
+        public static final int itemmenu=0x7f090001;
     }
     public static final class raw {
         public static final int kalender=0x7f050000;
@@ -158,8 +154,8 @@ containing a value of this type.
         public static final int app_label=0x7f080006;
         public static final int app_name=0x7f080000;
         public static final int arrangement=0x7f080016;
-        public static final int cancel=0x7f08001c;
-        public static final int choseLocations=0x7f08001e;
+        public static final int cancel=0x7f08001e;
+        public static final int choseLocations=0x7f080020;
         /**  Menu 
          */
         public static final int config=0x7f080011;
@@ -169,25 +165,31 @@ containing a value of this type.
         public static final int feedback=0x7f080012;
         public static final int johndee=0x7f080001;
         public static final int location=0x7f08000f;
-        public static final int locations=0x7f08001d;
+        public static final int locations=0x7f08001f;
         public static final int minefavoritter=0x7f08000a;
-        public static final int networkerror=0x7f08001f;
-        public static final int notification=0x7f080018;
+        public static final int networkerror=0x7f080021;
+        public static final int notification=0x7f08001a;
         /**  Notifications 
          */
-        public static final int notificationHeader=0x7f080017;
-        public static final int notificationOnError=0x7f08001a;
-        public static final int notificationOnErrorHeader=0x7f080019;
-        public static final int notifydelivery=0x7f080024;
-        public static final int notifydeliverydesc=0x7f080025;
-        public static final int notifyinterval=0x7f080022;
-        public static final int notifyintervaldesc=0x7f080023;
+        public static final int notificationMainHeader=0x7f080017;
+        public static final int notificationOnError=0x7f08001c;
+        public static final int notificationOnErrorHeader=0x7f08001b;
+        public static final int notificationnewsheader=0x7f080018;
+        public static final int notificationnewsheaderfavs=0x7f080019;
+        public static final int notifydelivery=0x7f08002a;
+        public static final int notifydeliverydesc=0x7f08002b;
+        public static final int notifyfavorites=0x7f080024;
+        public static final int notifyfavoritesdaysinadvance=0x7f080026;
+        public static final int notifyfavoritesdaysinadvancedesc=0x7f080027;
+        public static final int notifyfavoritesdesc=0x7f080025;
+        public static final int notifyinterval=0x7f080028;
+        public static final int notifyintervaldesc=0x7f080029;
         /**  Config 
          */
-        public static final int notifynew=0x7f080020;
-        public static final int notifynewdesc=0x7f080021;
+        public static final int notifynew=0x7f080022;
+        public static final int notifynewdesc=0x7f080023;
         public static final int nyfavoritt=0x7f08000c;
-        public static final int ok=0x7f08001b;
+        public static final int ok=0x7f08001d;
         public static final int refresh=0x7f08000b;
         public static final int rockefeller=0x7f080003;
         public static final int search_hint=0x7f080007;

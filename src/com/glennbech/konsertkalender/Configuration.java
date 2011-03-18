@@ -16,6 +16,9 @@ public class Configuration {
     public static final String NOTIFICATION_INTERVAL = "NOTIFYINTERVAL";
     public static final String NOTIFICATION_DELIVERY_HOUR = "NOTIFYDELIVERY";
 
+    public static final String KEY_ARE_NOTIFICATIONS_FAVORITES_ENABLED = "NOTIFYONFAVORITES";
+    public static final String NOTIFICATION_FAVORITES_DAYS_IN_ADVANCE = "NOTIFICATIONFAVORITESDAYSINADVANCE";
+
     private SharedPreferences preferences;
 
 
@@ -44,12 +47,7 @@ public class Configuration {
     public int getUpdateHour() {
 
         String hourString = preferences.getString(NOTIFICATION_DELIVERY_HOUR, null);
-        if (hourString == null) {
-            return -1;
-        }
-        // convert between 08:00 values...
-        String hour = hourString.substring(0, hourString.indexOf(':'));
-        return Integer.parseInt(hour);
+        return Integer.parseInt(hourString);
 
     }
 
@@ -106,4 +104,7 @@ public class Configuration {
     }
 
 
+    public boolean notificationsOnFavoritesEnabled() {
+        return false;  //To change body of created methods use File | Settings | File Templates.
+    }
 }
