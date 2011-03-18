@@ -35,15 +35,16 @@ public class ConfigActivity extends Activity {
         notifyUpdateGroup.add(notifyOnNew);
 
         MultiSelectOptionItem notifyDelivery = new MultiSelectOptionItem(Configuration.NOTIFICATION_DELIVERY_HOUR, getResources().getString(R.string.notifydelivery), getResources().getString(R.string.notifydeliverydesc));
-        notifyDelivery.addChoice("08:00");
-        notifyDelivery.addChoice("10:00");
-        notifyDelivery.addChoice("12:00");
-        notifyDelivery.addChoice("14:00");
-        notifyDelivery.addChoice("16:00");
-        notifyDelivery.addChoice("18:00");
-        notifyDelivery.addChoice("20:00");
-        notifyDelivery.addChoice("22:00");
-        notifyDelivery.addChoice("23:00");
+        notifyDelivery.addChoice(8, "08:00");
+        notifyDelivery.addChoice(9, "09:00");
+        notifyDelivery.addChoice(10, "10:00");
+        notifyDelivery.addChoice(12, "12:00");
+        notifyDelivery.addChoice(14, "14:00");
+        notifyDelivery.addChoice(16, "16:00");
+        notifyDelivery.addChoice(18, "18:00");
+        notifyDelivery.addChoice(21, "21:00");
+        notifyDelivery.addChoice(22, "22:00");
+        notifyDelivery.addChoice(23, "23:00");
         notifyUpdateGroup.add(notifyDelivery);
 
         options.add(notifyUpdateGroup);

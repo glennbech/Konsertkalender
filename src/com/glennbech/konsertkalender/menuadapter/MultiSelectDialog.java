@@ -40,8 +40,8 @@ public class MultiSelectDialog extends Dialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Spinner s = (Spinner) findViewById(R.id.optionSpinner);
-                String value = s.getSelectedItem().toString();
-                config.setProperty(item.getKey(), value);
+                MultiSelectOptionItem.Item selectedItem = (MultiSelectOptionItem.Item) s.getSelectedItem();
+                config.setProperty(item.getKey(), selectedItem.getValue().toString());
                 dismiss();
             }
         });
