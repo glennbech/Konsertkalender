@@ -77,7 +77,7 @@ public class ReloadDatabaseTask extends TimerTask {
                     set.removeAll(oldList);
                     if (set.size() != 0) {
                         Log.d(TAG, "The new list has a diff of " + set.size() + " konsertkalender.");
-                        notify(context.getString(R.string.notification), context.getString(R.string.notification), new ArrayList<VEvent>(set));
+                        notify(context.getString(R.string.notificationheader), context.getString(R.string.notification), new ArrayList<VEvent>(set));
                     } else {
                         Log.d(TAG, "List changed but no new items.");
                     }
@@ -105,6 +105,7 @@ public class ReloadDatabaseTask extends TimerTask {
         PendingIntent pendingIntent;
         if (newEvents != null) {
             i.putExtra("konsertkalender", (Serializable) newEvents);
+            i.putExtra("fromnotification", true);
             pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_ONE_SHOT);
         } else {
             pendingIntent = null;

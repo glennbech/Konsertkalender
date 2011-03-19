@@ -41,7 +41,8 @@
     <string name="notificationnewsheaderfavs">Varsling i forkant av favoritter</string>
 
 
-    <string name="notification">Programmeter opdpatert. Velg for å se nyheter.</string>
+    <string name="notificationheader">Konsertprogram oppdpatert.</string>
+    <string name="notification">Programmet er oppdatert. Velg for å se nyheter.</string>
 
     <string name="notificationOnErrorHeader">Konsertprogram</string>
     <string name="notificationOnError">Feil under henting av konsertprogram. Forsøker igjen om</string>

@@ -154,8 +154,8 @@ containing a value of this type.
         public static final int app_label=0x7f080006;
         public static final int app_name=0x7f080000;
         public static final int arrangement=0x7f080016;
-        public static final int cancel=0x7f08001e;
-        public static final int choseLocations=0x7f080020;
+        public static final int cancel=0x7f08001f;
+        public static final int choseLocations=0x7f080021;
         /**  Menu 
          */
         public static final int config=0x7f080011;
@@ -165,31 +165,32 @@ containing a value of this type.
         public static final int feedback=0x7f080012;
         public static final int johndee=0x7f080001;
         public static final int location=0x7f08000f;
-        public static final int locations=0x7f08001f;
+        public static final int locations=0x7f080020;
         public static final int minefavoritter=0x7f08000a;
-        public static final int networkerror=0x7f080021;
-        public static final int notification=0x7f08001a;
+        public static final int networkerror=0x7f080022;
+        public static final int notification=0x7f08001b;
         /**  Notifications 
          */
         public static final int notificationMainHeader=0x7f080017;
-        public static final int notificationOnError=0x7f08001c;
-        public static final int notificationOnErrorHeader=0x7f08001b;
+        public static final int notificationOnError=0x7f08001d;
+        public static final int notificationOnErrorHeader=0x7f08001c;
+        public static final int notificationheader=0x7f08001a;
         public static final int notificationnewsheader=0x7f080018;
         public static final int notificationnewsheaderfavs=0x7f080019;
-        public static final int notifydelivery=0x7f08002a;
-        public static final int notifydeliverydesc=0x7f08002b;
-        public static final int notifyfavorites=0x7f080024;
-        public static final int notifyfavoritesdaysinadvance=0x7f080026;
-        public static final int notifyfavoritesdaysinadvancedesc=0x7f080027;
-        public static final int notifyfavoritesdesc=0x7f080025;
-        public static final int notifyinterval=0x7f080028;
-        public static final int notifyintervaldesc=0x7f080029;
+        public static final int notifydelivery=0x7f08002b;
+        public static final int notifydeliverydesc=0x7f08002c;
+        public static final int notifyfavorites=0x7f080025;
+        public static final int notifyfavoritesdaysinadvance=0x7f080027;
+        public static final int notifyfavoritesdaysinadvancedesc=0x7f080028;
+        public static final int notifyfavoritesdesc=0x7f080026;
+        public static final int notifyinterval=0x7f080029;
+        public static final int notifyintervaldesc=0x7f08002a;
         /**  Config 
          */
-        public static final int notifynew=0x7f080022;
-        public static final int notifynewdesc=0x7f080023;
+        public static final int notifynew=0x7f080023;
+        public static final int notifynewdesc=0x7f080024;
         public static final int nyfavoritt=0x7f08000c;
-        public static final int ok=0x7f08001d;
+        public static final int ok=0x7f08001e;
         public static final int refresh=0x7f08000b;
         public static final int rockefeller=0x7f080003;
         public static final int search_hint=0x7f080007;

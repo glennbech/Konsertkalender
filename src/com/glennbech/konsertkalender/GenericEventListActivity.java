@@ -3,6 +3,7 @@ package com.glennbech.konsertkalender;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class GenericEventListActivity extends Activity {
     private EventStore store;
     private List<VEvent> favorites;
     private String caption;
+    private boolean fromNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,12 @@ public class GenericEventListActivity extends Activity {
         ImageButton ib = (ImageButton) findViewById(R.id.back);
         ib.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                finish();
+                if (fromNotification == true) {
+                    Intent i = new Intent().setClass(GenericEventListActivity.this, MainActivity.class);
+                    startActivity(i);
+                } else {
+                    finish();
+                }
             }
         });
     }
@@ -56,6 +63,7 @@ public class GenericEventListActivity extends Activity {
 
         this.favorites = (List<VEvent>) getIntent().getExtras().getSerializable("konsertkalender");
         this.caption = (String) getIntent().getExtras().getSerializable("caption");
+        this.fromNotification = getIntent().getExtras().getBoolean("fromnotification", false);
 
         TextView caption = (TextView) findViewById(R.id.caption);
         caption.setText(this.caption);
