@@ -1,9 +1,10 @@
 package com.glennbech.konsertkalender.service;
 
-import android.content.*;
-import android.os.IBinder;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
-import com.glennbech.konsertkalender.MainActivity;
 
 /**
  * Re enables the service.
@@ -12,26 +13,18 @@ import com.glennbech.konsertkalender.MainActivity;
  */
 public class OnBootBroadCastReceiver extends BroadcastReceiver {
 
+    private static String TAG = OnBootBroadCastReceiver.class.getName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        context.bindService(new Intent(context, EventReloadService.class), onServiceConntection, Context.BIND_AUTO_CREATE);
+
+        ComponentName comp = new ComponentName(context.getPackageName(), EventReloadService.class.getName());
+        ComponentName service = context.startService(new Intent().setComponent(comp));
+        if (null == service) {
+            // something really wrong here
+            Log.e(TAG, "Could not start service " + comp.toString());
+        }
     }
-
-    /**
-     * Callback for the service.
-     */
-    public final ServiceConnection onServiceConntection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            EventReloadService reloadService = ((EventReloadService.LocalBinder) iBinder).getService();
-
-            Log.d(MainActivity.class.getName(), "Service connected.");
-        }
-
-        public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(MainActivity.class.getName(), "Service disconnected.");
-        }
-    };
 
 
 }

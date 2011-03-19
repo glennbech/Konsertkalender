@@ -38,7 +38,7 @@ public class MultiSelectOptionItem extends OptionItem {
         this.choices.add(new Item(key, caption));
     }
 
-    public class Item implements Serializable {
+    public static class Item implements Serializable {
 
         private Object value;
         private String caption;
@@ -67,6 +67,23 @@ public class MultiSelectOptionItem extends OptionItem {
         @Override
         public String toString() {
             return caption;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Item)) return false;
+
+            Item item = (Item) o;
+
+            if (value != null ? !value.equals(item.value) : item.value != null) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            return value != null ? value.hashCode() : 0;
         }
     }
 

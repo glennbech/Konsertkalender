@@ -32,6 +32,12 @@
                   android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                   android:configChanges="orientation|keyboard|keyboardHidden"/>
 
+        <!-- Startup after boot -->
+        <receiver android:name=".service.OnBootBroadCastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
 
         <!-- Track Market installs -->
         <receiver android:name="com.admob.android.ads.analytics.InstallReceiver"

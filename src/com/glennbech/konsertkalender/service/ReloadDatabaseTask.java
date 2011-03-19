@@ -49,7 +49,7 @@ public class ReloadDatabaseTask extends TimerTask {
             return;
         }
 
-        int hour = config.getUpdateHour();
+        int hour = Integer.parseInt(config.getUpdateHour());
         int nowHour = getHourOfDay();
 
         if (nowHour != hour) {

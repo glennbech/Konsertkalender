@@ -29,10 +29,10 @@ public class MultiSelectDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        setContentView(R.layout.dialogmultiselect);
 
         config = new Configuration(getContext());
         setTitle(title);
-        setContentView(R.layout.dialogmultiselect);
 
         Button okButton = (Button) findViewById(R.id.dialogTextInputOkbutton);
         Button cancelButton = (Button) findViewById(R.id.dialogTextInputCancelButton);
@@ -56,11 +56,13 @@ public class MultiSelectDialog extends Dialog {
     @Override
     protected void onStart() {
         super.onStart();
+
         Spinner spinner = (Spinner) findViewById(R.id.optionSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_dropdown_item_1line, item.getChoices());
+        ArrayAdapter<MultiSelectOptionItem.Item> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_dropdown_item_1line, item.getChoices());
         spinner.setAdapter(adapter);
         if (item.getValue() != null) {
-            spinner.setSelection(adapter.getPosition(item.getValue()));
+
+            spinner.setSelection(adapter.getPosition(new MultiSelectOptionItem.Item(config.getUpdateHour(), "")));
         } else {
             spinner.setSelection(0);
         }
