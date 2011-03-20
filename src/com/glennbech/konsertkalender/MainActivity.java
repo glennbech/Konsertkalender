@@ -170,18 +170,19 @@ public class MainActivity extends Activity {
         Runnable r = new Runnable() {
             public void run() {
                 // the database task may be updating the datbas. Queue'm up!
-
-                EventList el = EventListFactory.getEventList(MainActivity.this);
-                List<VEvent> allEvents;
-                try {
-                    store.clear();
-                    allEvents = el.getEvents();
-                    for (VEvent e : allEvents) {
-                        store.createEvent(e);
+                synchronized (ReloadDatabaseTask.class) {
+                    EventList el = EventListFactory.getEventList(MainActivity.this);
+                    List<VEvent> allEvents;
+                    try {
+                        store.clear();
+                        allEvents = el.getEvents();
+                        for (VEvent e : allEvents) {
+                            store.createEvent(e);
+                        }
+                        handler.sendEmptyMessage(EVENT_OK);
+                    } catch (IOException e) {
+                        handler.sendEmptyMessage(EVENT_ERROR);
                     }
-                    handler.sendEmptyMessage(EVENT_OK);
-                } catch (IOException e) {
-                    handler.sendEmptyMessage(EVENT_ERROR);
                 }
             }
 

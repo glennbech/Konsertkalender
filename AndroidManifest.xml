@@ -4,7 +4,7 @@
           android:versionCode="4"
           android:versionName="1.4">
 
-    <application android:label="@string/app_name" android:icon="@drawable/icon" android:debuggable="true">
+    <application android:label="@string/app_name" android:icon="@drawable/icon">
 
         <activity android:name=".GenericEventListActivity" android:screenOrientation="portrait"
                   android:label="@string/arrangement"/>
@@ -51,6 +51,6 @@
 
 
     </application>
-    <uses-sdk android:minSdkVersion="4"/>
+    <uses-sdk android:minSdkVersion="7"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest> 
