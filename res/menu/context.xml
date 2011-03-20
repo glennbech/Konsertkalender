@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menuitemconfig"
+    <item android:id="@+id/menuitemconfig" android:icon="@drawable/tools"
           android:title="@string/config"/>
+
     <item android:id="@+id/menuitemfeedback"
-          android:title="@string/feedback"/>
+          android:title="@string/feedback" android:icon="@drawable/feedback"/>
+
+    <item android:id="@+id/menuitemrefresh"
+          android:title="@string/refresh" android:icon="@drawable/refresh"/>
 
 </menu>

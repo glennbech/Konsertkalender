@@ -55,23 +55,11 @@
 
     <!-- Config -->
 
-    <string name="notifynew">Varsling</string>
-    <string name="notifynewdesc">Varsle meg når konsertprogram \nendrer seg</string>
+    <string name="notifynew">Autmatisk henting</string>
+    <string name="notifynewdesc">Hent programmet automatisk\nog varsle meg ved nye konserter</string>
 
-    <string name="notifyfavorites">Huskeliste</string>
-    <string name="notifyfavoritesdesc">Varsle meg når konserter på min \nhuskeliste nærmer seg.</string>
-
-    <string name="notifyfavoritesdaysinadvance">Forvarsel</string>
-    <string name="notifyfavoritesdaysinadvancedesc">Hvor mange dager i forkant du vil bli varslet om konserter på din
-        huskeliste
-    </string>
-
-
-    <string name="notifyinterval">Oppdatering</string>
-    <string name="notifyintervaldesc">Hvor ofte applikasjonen skal sjekke etter endringer i konsertprogrammene</string>
-
-    <string name="notifydelivery">Varslingstidspunkt</string>
-    <string name="notifydeliverydesc">Når du vil bli varslet</string>
+    <string name="notifydelivery">Tidspunkt</string>
+    <string name="notifydeliverydesc">Når på dagen programmet skal hentes.</string>
 
 
 </resources>

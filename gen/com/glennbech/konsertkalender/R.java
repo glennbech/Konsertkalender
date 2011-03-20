@@ -58,34 +58,20 @@ containing a value of this type.
         public static final int dark=0x7f060001;
     }
     public static final class drawable {
-        public static final int back=0x7f020000;
-        public static final int backgroundstripes=0x7f020001;
-        public static final int bgstripes=0x7f020002;
-        public static final int buttonfavorite=0x7f020003;
-        public static final int bwgradient=0x7f020004;
-        public static final int filter=0x7f020005;
-        public static final int header=0x7f020006;
-        public static final int home=0x7f020007;
-        public static final int icon=0x7f020008;
-        public static final int info=0x7f020009;
-        public static final int list=0x7f02000a;
-        public static final int logo=0x7f02000b;
-        public static final int logofav=0x7f02000c;
-        public static final int refresh=0x7f02000d;
-        public static final int sceneall=0x7f02000e;
-        public static final int scenej=0x7f02000f;
-        public static final int scenejmono=0x7f020010;
-        public static final int scener=0x7f020011;
-        public static final int scenermono=0x7f020012;
-        public static final int scenes=0x7f020013;
-        public static final int scenesmono=0x7f020014;
-        public static final int scnejgone=0x7f020015;
-        public static final int scnergone=0x7f020016;
-        public static final int scnesgone=0x7f020017;
-        public static final int searchicon=0x7f020018;
-        public static final int softwhitegradient=0x7f020019;
-        public static final int starchecked=0x7f02001a;
-        public static final int starunchecked=0x7f02001b;
+        public static final int buttonfavorite=0x7f020000;
+        public static final int bwgradient=0x7f020001;
+        public static final int feedback=0x7f020002;
+        public static final int filter=0x7f020003;
+        public static final int home=0x7f020004;
+        public static final int icon=0x7f020005;
+        public static final int info=0x7f020006;
+        public static final int list=0x7f020007;
+        public static final int refresh=0x7f020008;
+        public static final int searchicon=0x7f020009;
+        public static final int softwhitegradient=0x7f02000a;
+        public static final int starchecked=0x7f02000b;
+        public static final int starunchecked=0x7f02000c;
+        public static final int tools=0x7f02000d;
     }
     public static final class id {
         public static final int ad=0x7f0a000c;
@@ -105,27 +91,29 @@ containing a value of this type.
         public static final int mainLayout=0x7f0a0000;
         public static final int menuItems=0x7f0a0001;
         public static final int menuitemcheckbox=0x7f0a001c;
-        public static final int menuitemconfig=0x7f0a0023;
+        public static final int menuitemconfig=0x7f0a0024;
         public static final int menuitemdescription=0x7f0a001b;
-        public static final int menuitemfeedback=0x7f0a0024;
+        public static final int menuitemfeedback=0x7f0a0025;
+        public static final int menuitemrefresh=0x7f0a0026;
         public static final int menuitemtitle=0x7f0a001a;
+        public static final int menuitemvalue=0x7f0a001d;
         public static final int messageList=0x7f0a0019;
         public static final int optionSpinner=0x7f0a0003;
         public static final int sceneicon=0x7f0a0010;
         public static final int search=0x7f0a0016;
         public static final int searchbutton=0x7f0a0017;
-        public static final int share=0x7f0a0025;
+        public static final int share=0x7f0a0027;
         public static final int starbutton=0x7f0a0014;
         public static final int textInputDialogTitle=0x7f0a0002;
         public static final int textInputEditText=0x7f0a0006;
         public static final int title=0x7f0a000f;
         public static final int topmenu=0x7f0a0009;
-        public static final int venueList=0x7f0a0020;
-        public static final int venuecancel=0x7f0a0022;
-        public static final int venuename=0x7f0a001e;
-        public static final int venueok=0x7f0a0021;
-        public static final int venuerow=0x7f0a001d;
-        public static final int venueselected=0x7f0a001f;
+        public static final int venueList=0x7f0a0021;
+        public static final int venuecancel=0x7f0a0023;
+        public static final int venuename=0x7f0a001f;
+        public static final int venueok=0x7f0a0022;
+        public static final int venuerow=0x7f0a001e;
+        public static final int venueselected=0x7f0a0020;
     }
     public static final class layout {
         public static final int config=0x7f030000;
@@ -177,14 +165,8 @@ containing a value of this type.
         public static final int notificationheader=0x7f08001a;
         public static final int notificationnewsheader=0x7f080018;
         public static final int notificationnewsheaderfavs=0x7f080019;
-        public static final int notifydelivery=0x7f08002b;
-        public static final int notifydeliverydesc=0x7f08002c;
-        public static final int notifyfavorites=0x7f080025;
-        public static final int notifyfavoritesdaysinadvance=0x7f080027;
-        public static final int notifyfavoritesdaysinadvancedesc=0x7f080028;
-        public static final int notifyfavoritesdesc=0x7f080026;
-        public static final int notifyinterval=0x7f080029;
-        public static final int notifyintervaldesc=0x7f08002a;
+        public static final int notifydelivery=0x7f080025;
+        public static final int notifydeliverydesc=0x7f080026;
         /**  Config 
          */
         public static final int notifynew=0x7f080023;
@@ -203,8 +185,9 @@ containing a value of this type.
         public static final int toexternal=0x7f080010;
     }
     public static final class style {
-        public static final int OptionsDescription=0x7f070001;
-        public static final int OptionsTitle=0x7f070000;
+        public static final int OptionsDescription=0x7f070002;
+        public static final int OptionsTitle=0x7f070001;
+        public static final int OptionsValue=0x7f070000;
     }
     public static final class xml {
         public static final int searchable=0x7f040000;

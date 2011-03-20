@@ -254,6 +254,8 @@ public class MainActivity extends Activity {
         } else if (item.getItemId() == R.id.menuitemconfig) {
             Intent i = new Intent().setClass(this, ConfigActivity.class);
             startActivity(i);
+        } else if (item.getItemId() == R.id.menuitemrefresh) {
+            loadFromNet();
         }
         return super.onOptionsItemSelected(item);
     }

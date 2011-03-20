@@ -7,5 +7,7 @@
     <TextView android:id="@+id/menuitemtitle" style="@style/OptionsTitle"/>
     <TextView android:id="@+id/menuitemdescription" style="@style/OptionsDescription"
               android:layout_below="@+id/menuitemtitle"/>
+    <TextView android:id="@+id/menuitemvalue" style="@style/OptionsValue"
+              android:layout_below="@+id/menuitemtitle"/>
 
 </RelativeLayout>
