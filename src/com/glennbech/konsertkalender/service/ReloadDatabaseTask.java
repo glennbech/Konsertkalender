@@ -42,7 +42,6 @@ public class ReloadDatabaseTask extends TimerTask {
     public void run() {
         long startTime = System.currentTimeMillis();
         Log.d(TAG, "run - updating database");
-        final EventStore eventStore = new SQLiteEventStore(context);
 
         if (config.notificationsEnabled() == false) {
             Log.d(TAG, "Notifications are disabled.");
@@ -60,6 +59,7 @@ public class ReloadDatabaseTask extends TimerTask {
         try {
             // load database. Lock it down, the app might check if the database is empty and initiate a reload
             synchronized (ReloadDatabaseTask.class) {
+                final EventStore eventStore = new SQLiteEventStore(context);
                 final List<VEvent> oldList = eventStore.getEvents();
                 eventStore.clear();
 
