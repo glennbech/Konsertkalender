@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.util.Date;
 import java.util.Timer;
 
 
@@ -24,7 +25,9 @@ public class EventReloadService extends Service {
         super.onCreate();
         Log.d(EventReloadService.class.getName(), "onCreate");
         timer = new Timer(false);
-        timer.schedule(new ReloadDatabaseTask(this), MINUTE, MINUTE * 60);
+
+        Date firstLaunch = new Date(System.currentTimeMillis() + MINUTE);
+        timer.scheduleAtFixedRate(new ReloadDatabaseTask(this), firstLaunch, MINUTE * 60);
         Log.d(EventReloadService.class.getName(), "Timer task scheduled");
     }
 

@@ -61,17 +61,16 @@ containing a value of this type.
         public static final int buttonfavorite=0x7f020000;
         public static final int bwgradient=0x7f020001;
         public static final int feedback=0x7f020002;
-        public static final int filter=0x7f020003;
-        public static final int home=0x7f020004;
-        public static final int icon=0x7f020005;
-        public static final int info=0x7f020006;
-        public static final int list=0x7f020007;
-        public static final int refresh=0x7f020008;
-        public static final int searchicon=0x7f020009;
-        public static final int softwhitegradient=0x7f02000a;
-        public static final int starchecked=0x7f02000b;
-        public static final int starunchecked=0x7f02000c;
-        public static final int tools=0x7f02000d;
+        public static final int home=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int info=0x7f020005;
+        public static final int list=0x7f020006;
+        public static final int refresh=0x7f020007;
+        public static final int searchicon=0x7f020008;
+        public static final int softwhitegradient=0x7f020009;
+        public static final int starchecked=0x7f02000a;
+        public static final int starunchecked=0x7f02000b;
+        public static final int tools=0x7f02000c;
     }
     public static final class id {
         public static final int ad=0x7f0a000c;
