@@ -18,6 +18,10 @@ import com.glennbech.konsertkalender.eventlist.EventListFactory;
 import com.glennbech.konsertkalender.parser.VEvent;
 import com.glennbech.konsertkalender.persistence.EventStore;
 import com.glennbech.konsertkalender.persistence.SQLiteEventStore;
+import com.glennbech.konsertkalender.quickbar.DeferActionItem;
+import com.glennbech.konsertkalender.quickbar.FavoriteAction;
+import com.glennbech.konsertkalender.quickbar.GotoExternalAction;
+import com.glennbech.konsertkalender.quickbar.QuickAction;
 import com.glennbech.konsertkalender.service.EventReloadService;
 import com.glennbech.konsertkalender.service.ReloadDatabaseTask;
 
@@ -53,6 +57,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
         store = new SQLiteEventStore(this);
 
         // register the service, and create it if it is not running.
@@ -66,6 +71,7 @@ public class MainActivity extends Activity {
         // don't run it at the same time the Reload Database task is running. The ReloadAtabasetask also requests
         // a lock on the class object.
         synchronized (ReloadDatabaseTask.class) {
+
             List<VEvent> events = store.getEvents();
             if (events.size() == 0) {
                 Log.d(MainActivity.class.getName(), "No konsertkalender in database. Loading from net.");
@@ -107,11 +113,26 @@ public class MainActivity extends Activity {
             }
         });
 
-        ListView listview = (ListView) findViewById(R.id.messageList);
+        final ListView listview = (ListView) findViewById(R.id.messageList);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                VEvent clickedEvent = (VEvent) adapterView.getItemAtPosition(position);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(clickedEvent.getUrl())));
+                VEvent e = (VEvent) adapterView.getItemAtPosition(position);
+                QuickAction quickAction = new QuickAction(view);
+
+                final DeferActionItem deferActionItem = new DeferActionItem(MainActivity.this, quickAction);
+                final GotoExternalAction gotoExternalAction = new GotoExternalAction(MainActivity.this, quickAction);
+                final FavoriteAction favoriteAction = new FavoriteAction(MainActivity.this, quickAction, e, (BaseAdapter) listview.getAdapter());
+
+                deferActionItem.setArgument(e);
+                gotoExternalAction.setArgument(e);
+                favoriteAction.setArgument(e);
+
+                quickAction.addActionItem(deferActionItem);
+                quickAction.addActionItem(gotoExternalAction);
+                quickAction.addActionItem(favoriteAction);
+
+                quickAction.setAnimStyle(QuickAction.ANIM_AUTO);
+                quickAction.show();
             }
         });
 
@@ -154,12 +175,12 @@ public class MainActivity extends Activity {
                 .setCancelable(false)
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                        loadFromNet();
                     }
                 }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                loadFromNet();
+                 finish();
             }
         });
         return builder.create();
@@ -167,6 +188,7 @@ public class MainActivity extends Activity {
 
     private void loadFromNet() {
         progress = ProgressDialog.show(this, "Vennligst vent", "Laster program", true);
+
         Runnable r = new Runnable() {
             public void run() {
                 // the database task may be updating the datbas. Queue'm up!

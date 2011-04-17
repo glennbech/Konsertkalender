@@ -1,15 +1,14 @@
 package com.glennbech.konsertkalender;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.glennbech.konsertkalender.parser.VEvent;
-import com.glennbech.konsertkalender.persistence.EventStore;
-import com.glennbech.konsertkalender.persistence.SQLiteEventStore;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -53,32 +52,12 @@ class EventListAdapter extends ArrayAdapter<VEvent> {
                 dateView.setText(dateFormat.format(event.getStartDate()));
             }
 
-            final ImageButton ib = (ImageButton) v.findViewById(R.id.starbutton);
-            ib.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View view) {
-                    EventStore s = new SQLiteEventStore(context);
-                    if (event.isFavorite()) {
-                        s.setFavorite(event.getUid(), event.getStartDate(), false);
-                        event.setFavorite(false);
-                    } else {
-                        s.setFavorite(event.getUid(), event.getStartDate(), true);
-                        event.setFavorite(true);
-                    }
-                    parentAdapter.notifyDataSetChanged();
-                }
-            });
 
-            final ImageButton hb = (ImageButton) v.findViewById(R.id.homebutton);
-            hb.setOnClickListener(new Button.OnClickListener() {
-                public void onClick(View view) {
-                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(event.getUrl())));
-                }
-            });
-
+            final ImageView ib = (ImageView) v.findViewById(R.id.starbutton);
             if (event.isFavorite()) {
                 ib.setImageDrawable(context.getResources().getDrawable(R.drawable.starchecked));
             } else {
-                ib.setImageDrawable(context.getResources().getDrawable(R.drawable.starunchecked));
+                ib.setImageDrawable(null);
             }
         }
         return v;
