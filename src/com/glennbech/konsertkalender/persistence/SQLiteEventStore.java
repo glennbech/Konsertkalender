@@ -46,10 +46,12 @@ public class SQLiteEventStore extends SQLiteOpenHelper implements EventStore {
     public SQLiteEventStore(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+
         sqLiteDatabase.execSQL(ddlCreateMessage);
         sqLiteDatabase.execSQL(ddlCreateMessageFavorites);
     }

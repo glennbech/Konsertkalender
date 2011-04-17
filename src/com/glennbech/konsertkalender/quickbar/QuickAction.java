@@ -223,6 +223,7 @@ public class QuickAction extends CustomPopupWindow {
         LinearLayout container = (LinearLayout) inflater.inflate(R.layout.action_item, null);
         ImageView img = (ImageView) container.findViewById(R.id.icon);
         TextView text = (TextView) container.findViewById(R.id.title);
+        text.setBackgroundResource(R.color.transparent);
 
         if (icon != null) {
             img.setImageDrawable(icon);
