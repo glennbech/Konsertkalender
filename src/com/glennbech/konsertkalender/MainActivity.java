@@ -18,10 +18,6 @@ import com.glennbech.konsertkalender.eventlist.EventListFactory;
 import com.glennbech.konsertkalender.parser.VEvent;
 import com.glennbech.konsertkalender.persistence.EventStore;
 import com.glennbech.konsertkalender.persistence.SQLiteEventStore;
-import com.glennbech.konsertkalender.quickbar.DeferActionItem;
-import com.glennbech.konsertkalender.quickbar.FavoriteAction;
-import com.glennbech.konsertkalender.quickbar.GotoExternalAction;
-import com.glennbech.konsertkalender.quickbar.QuickAction;
 import com.glennbech.konsertkalender.service.EventReloadService;
 import com.glennbech.konsertkalender.service.ReloadDatabaseTask;
 
@@ -113,30 +109,12 @@ public class MainActivity extends Activity {
             }
         });
 
-        final ListView listview = (ListView) findViewById(R.id.messageList);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                VEvent e = (VEvent) adapterView.getItemAtPosition(position);
-                QuickAction quickAction = new QuickAction(view);
-
-                final DeferActionItem deferActionItem = new DeferActionItem(MainActivity.this, quickAction);
-                final GotoExternalAction gotoExternalAction = new GotoExternalAction(MainActivity.this, quickAction);
-                final FavoriteAction favoriteAction = new FavoriteAction(MainActivity.this, quickAction, e, (BaseAdapter) listview.getAdapter());
-
-                deferActionItem.setArgument(e);
-                gotoExternalAction.setArgument(e);
-                favoriteAction.setArgument(e);
-
-                quickAction.addActionItem(deferActionItem);
-                quickAction.addActionItem(gotoExternalAction);
-                quickAction.addActionItem(favoriteAction);
-
-                quickAction.setAnimStyle(QuickAction.ANIM_AUTO);
-                quickAction.show();
-            }
-        });
-
         redrawList(store.getEvents());
+
+        final ListView listview = (ListView) findViewById(R.id.messageList);
+        QuickActionClickListener quickActionClickListener = new QuickActionClickListener(this, (BaseAdapter) listview.getAdapter());
+        listview.setOnItemClickListener(quickActionClickListener);
+
     }
 
     @Override
@@ -156,6 +134,7 @@ public class MainActivity extends Activity {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(ReloadDatabaseTask.MY_NOTIFICATION_ID);
+        redrawList(store.getEvents());
     }
 
     @Override
@@ -180,7 +159,7 @@ public class MainActivity extends Activity {
                 }).setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                 finish();
+                finish();
             }
         });
         return builder.create();

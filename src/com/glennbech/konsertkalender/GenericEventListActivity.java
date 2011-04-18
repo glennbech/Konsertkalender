@@ -6,10 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.glennbech.konsertkalender.parser.VEvent;
 import com.glennbech.konsertkalender.persistence.EventStore;
 import com.glennbech.konsertkalender.persistence.SQLiteEventStore;
@@ -52,6 +49,7 @@ public class GenericEventListActivity extends Activity {
                 }
             }
         });
+
     }
 
     @Override
@@ -68,6 +66,9 @@ public class GenericEventListActivity extends Activity {
         TextView caption = (TextView) findViewById(R.id.caption);
         caption.setText(this.caption);
         redrawList(favorites);
+        final ListView listview = (ListView) findViewById(R.id.favoritelist);
+        QuickActionClickListener quickActionClickListener = new QuickActionClickListener(this, adapter);
+        listview.setOnItemClickListener(quickActionClickListener);
     }
 
     private void redrawList(List<VEvent> events) {

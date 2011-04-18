@@ -19,17 +19,21 @@ public class FavoriteAction extends ActionItem implements View.OnClickListener {
     private VEvent event;
 
     public FavoriteAction(Context context, QuickAction quickAction, VEvent event, BaseAdapter adapter) {
+        if (adapter == null) {
+            throw new RuntimeException();
+        }
         this.context = context;
         this.quickAction = quickAction;
         this.adapter = adapter;
         this.event = event;
+
 
         if (event.isFavorite()) {
             setIcon(context.getResources().getDrawable(R.drawable.starunchecked));
             setTitle("Favoritt av");
         } else {
             setIcon(context.getResources().getDrawable(R.drawable.starchecked));
-             setTitle("Favoritt");
+            setTitle("Favoritt");
         }
 
 
